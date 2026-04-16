@@ -11,6 +11,11 @@ class ComposerStaticInit0868957bde908c8257654d79e5bf5fae
     );
 
     public static $prefixLengthsPsr4 = array (
+        'W' =>
+        array (
+            'WilliamCosta\\DotEnv\\' => 20,
+            'WilliamCosta\\DatabaseManager\\' => 29,
+        ),
         'R' =>
         array (
             'Ramsey\\Uuid\\' => 12,
@@ -27,6 +32,14 @@ class ComposerStaticInit0868957bde908c8257654d79e5bf5fae
     );
 
     public static $prefixDirsPsr4 = array (
+        'WilliamCosta\\DotEnv\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/william-costa/dot-env/src',
+        ),
+        'WilliamCosta\\DatabaseManager\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/william-costa/database-manager/src',
+        ),
         'Ramsey\\Uuid\\' =>
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',

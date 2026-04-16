@@ -6,6 +6,8 @@
     }
   },
   "require": {
-    "ramsey/uuid": "^4.9"
+    "ramsey/uuid": "^4.9",
+    "william-costa/dot-env": "^0.1.0",
+    "william-costa/database-manager": "^0.1.0"
   }
 }

@@ -1,0 +1,58 @@
+<section id="form" class="container mt-4">
+
+  <div class="card bg-dark text-light border-secondary shadow">
+
+    <div class="card-header border-secondary">
+      <h5 class="mb-0">Cadastrar aluno</h5>
+    </div>
+
+    <div class="card-body">
+
+      <form method="POST" action="/aluno/cadastro">
+
+        <div class="row">
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control bg-secondary text-light border-0" name="name" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Data de nascimento</label>
+            <input type="date" class="form-control bg-secondary text-light border-0" name="birth_date" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Telefone</label>
+            <input type="text" class="form-control bg-secondary text-light border-0" name="phone_number">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Graduação (ID)</label>
+            <input type="number" class="form-control bg-secondary text-light border-0" name="graduation_id">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Responsável</label>
+            <input type="text" class="form-control bg-secondary text-light border-0" name="guardian_name">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Telefone do responsável</label>
+            <input type="text" class="form-control bg-secondary text-light border-0" name="guardian_phone">
+          </div>
+
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary px-4 fw-bold">
+            Cadastrar
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</section>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 use \App\Utils\View;
 
 abstract class PageController{

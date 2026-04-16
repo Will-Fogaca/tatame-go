@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   app:
     build: .
@@ -5,4 +7,22 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./:/var/www/html
+      - ./:/var/www/html/tatamego
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16
+    container_name: tatamego_db
+    restart: always
+    environment:
+      POSTGRES_DB: tatamego_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

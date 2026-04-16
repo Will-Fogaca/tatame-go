@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f27b412416d5bfb8de40e143efca3f3",
+    "content-hash": "8d73182da78d6c017ead7c760c0438d0",
     "packages": [
         {
             "name": "brick/math",
@@ -219,6 +219,86 @@
                 "source": "https://github.com/ramsey/uuid/tree/4.9.2"
             },
             "time": "2025-12-14T04:43:48+00:00"
+        },
+        {
+            "name": "william-costa/database-manager",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/william-costa/database-manager.git",
+                "reference": "ed871363f27251a882b9e5dc036dcac566b271c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/william-costa/database-manager/zipball/ed871363f27251a882b9e5dc036dcac566b271c4",
+                "reference": "ed871363f27251a882b9e5dc036dcac566b271c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WilliamCosta\\DatabaseManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "William Costa",
+                    "email": "canalwdev@gmail.com"
+                }
+            ],
+            "description": "A simple library for managing database connections, results pagination and building queries in PHP.",
+            "support": {
+                "issues": "https://github.com/william-costa/database-manager/issues",
+                "source": "https://github.com/william-costa/database-manager/tree/v0.1.0"
+            },
+            "time": "2021-03-19T18:51:35+00:00"
+        },
+        {
+            "name": "william-costa/dot-env",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/william-costa/dot-env.git",
+                "reference": "e5eb9b0384b57f2812215fab0e3853c16a4b368e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/william-costa/dot-env/zipball/e5eb9b0384b57f2812215fab0e3853c16a4b368e",
+                "reference": "e5eb9b0384b57f2812215fab0e3853c16a4b368e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WilliamCosta\\DotEnv\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "William Costa",
+                    "email": "canalwdev@gmail.com"
+                }
+            ],
+            "description": "A simple library for managing environment variables in PHP.",
+            "support": {
+                "issues": "https://github.com/william-costa/dot-env/issues",
+                "source": "https://github.com/william-costa/dot-env/tree/v0.1.0"
+            },
+            "time": "2021-03-19T19:28:14+00:00"
         }
     ],
     "packages-dev": [],

@@ -1,0 +1,23 @@
+# Dependências
+/vendor/
+
+# Variáveis de ambiente
+.env
+
+# Cache e logs
+/storage/logs/
+/storage/cache/
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.user
+
+# PHP
+*.cache
