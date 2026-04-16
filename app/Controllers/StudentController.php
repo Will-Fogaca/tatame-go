@@ -38,7 +38,6 @@ class StudentController extends PageController{
       return $items;
   }
 
-
   /**
    * Método responsável por retornar o conteúdo (view) da página de alunos
    * @return string
