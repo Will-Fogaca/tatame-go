@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http;
+
+use App\Http\Middleware\Queue;
 use \Closure;
 use \Exception;
 use \ReflectionFunction;
@@ -70,6 +72,8 @@ class Router{
             }
         }
         $params['variables'] = [];
+        $params['middlewares'] = $params['middlewares'] ?? [];
+
         $patternVariable = '/{(.*?)}/';
         if(preg_match_all($patternVariable, $route, $matches)){
            $route = preg_replace($patternVariable, '(.*?)', $route);
@@ -125,15 +129,18 @@ class Router{
             if(!isset($route['controller'])){
                 throw new Exception("A URL não pôde ser processada.", 500);
             }
-            $args = [];
+           $args = [];
 
             $reflection = new ReflectionFunction($route['controller']);
             foreach($reflection->getParameters() as $parameter){
                 $name = $parameter->getName();
-                $args[$name] = $route['variables'][$name] ?? '';
+                $args[$name] = $route['variables'][$name] ?? $this->request;
             }
 
-            return call_user_func_array($route['controller'], $args);
+
+            return (new Queue($route['middlewares'], $route['controller'], $args))-> next($this->request);
+
+
         }catch(Exception $e){
             return new Response($e->getCode(), $e->getMessage());
         }
@@ -175,5 +182,14 @@ class Router{
      */
     public function delete($route, $params = []){
         return $this->addRoute('DELETE', $route, $params);
+    }
+
+    /**
+     * Método responsável por retornar a URL atual
+     *
+     * @return string
+     */
+    public function getCurrentUrl(){
+        return $this->url.$this->getUri();
     }
 }

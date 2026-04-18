@@ -8,20 +8,20 @@
 
 
   $router->get('/', [
-    function() { 
-      return new Response(200, HomeController::getHome());
-    }
+      function($request) { 
+        return new Response(200, HomeController::getHome());
+      }
   ]);
 
   $router->get('/aluno', [
     function($request){
-      return new Response(200, StudentController::index($request));
+      return new Response(200, StudentController::getIndex($request));
     }
   ]);
 
   $router->post('/aluno/cadastro', [
     function($request){
-      return new Response(200, StudentController::store($request));
+      return new Response(200, StudentController::getStore($request));
     }
   ]);
 

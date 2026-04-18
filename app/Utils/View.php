@@ -15,7 +15,7 @@
      * @param array $vars
      */
     public static function init($vars = []){
-      self::$vars = $vars;
+        self::$vars = $vars;
     }
 
     /**
@@ -23,10 +23,10 @@
       * @param string $view
       * @return string
     */
-   private static function getContentView($view){
-    $file = __DIR__.'/../../resources/Views/'.$view.'.html';
-    return file_exists($file) ? file_get_contents($file) : '';
-  }
+    private static function getContentView($view){
+      $file = __DIR__.'/../../resources/Views/'.$view.'.html';
+      return file_exists($file) ? file_get_contents($file) : '';
+    }
 
     /**
       * Método responsável por retornar o conteúdo renderizado de uma view

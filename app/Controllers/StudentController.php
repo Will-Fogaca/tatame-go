@@ -10,15 +10,16 @@ class StudentController extends PageController{
   /**
    * Método responsável por obter a renderização dos itens dos alunos para a página
    * @param Request $request
+   * @param Pagination $pagination
    * @return string
    */
-  private static function renderStudents($request){
+  private static function renderStudents($request, &$pagination){
       $items = '';
       $totalStudents = Student::list(null, null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
       $queryParams = $request->getQueryParams();
       $currentPage = $queryParams['page'] ?? 1;
 
-      $pagination = new Pagination($totalStudents, $currentPage, 10);
+      $pagination = new Pagination($totalStudents, $currentPage, 1);
 
       $results = Student::list(null, 'name ASC', $pagination->getLimit(), $pagination->getOffset());
       $number = 1;
@@ -42,9 +43,10 @@ class StudentController extends PageController{
    * Método responsável por retornar o conteúdo (view) da página de alunos
    * @return string
    */
-  public static function index($request){
+  public static function getIndex($request){
     $content = View::render('students/index', [
-      'students' => self::renderStudents($request)
+      'students' => self::renderStudents($request, $pagination),
+      'pagination' => parent::getPagination($request, $pagination)
     ]);
 
     return parent::getPage('Alunos', $content);
@@ -64,7 +66,7 @@ class StudentController extends PageController{
    * @param Request $request
    * @return string
    */
-  public static function store($request){
+  public static function postStore($request){
 
       $postVars = $request->getPostVars();
       $student = new Student();
@@ -80,6 +82,6 @@ class StudentController extends PageController{
 
       $student->save();
 
-      return self::index($request);
+      return self::getIndex($request);
   }
 }

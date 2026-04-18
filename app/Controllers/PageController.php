@@ -36,5 +36,36 @@ abstract class PageController{
     ]);
   }
 
+ /**
+ * Método responsável por rendereziar o layout de paginação
+ * @param Request $request
+ * @param Pagination $pagination 
+ */
+  public static function getPagination($request, $pagination){
+    $pages = $pagination->getPages();
+    if(count($pages) <= 1) return '';
+  
+    $links = '';
+
+    $url = $request->getRouter()->getCurrentUrl();
+    $queryParams = $request->getQueryParams();
+
+    foreach ($pages as $page) {
+     $queryParams['page'] = $page['page']; 
+
+      $link = $url.'?'.http_build_query($queryParams);
+     
+      $links .= View::render('pages/pagination/link', [
+        'page' => $page['page'],
+        'link' => $link
+      ]);
+    }
+
+    return View::render('pages/pagination/box', [
+      'links' => $links
+    ]);
+
+   }
+
 
 }

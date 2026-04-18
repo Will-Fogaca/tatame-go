@@ -79,9 +79,7 @@ class Student
             'updated_at' => $this->updated_at
         ]);
 
-        echo "<pre>";
-        print_r($this);
-        echo "</pre>"; exit;
+        
     }
 
     /**
