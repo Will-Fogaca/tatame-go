@@ -1,0 +1,17 @@
+:root {
+  /* 🔴 Vermelhos */
+  --color-red-primary: #E11C23;
+  --color-red-dark: #B51218;
+  --color-red-light: #F04A4F;
+
+  /* 🔵 Azuis */
+  --color-blue-dark: #0D3B66;
+  --color-blue-medium: #1F5E8C;
+  --color-blue-light: #3A7CA5;
+
+  /* ⚪ Neutros */
+  --color-gray-dark: #6E6E6E;
+  --color-gray-medium: #A6A6A6;
+  --color-gray-light: #D9D9D9;
+  --color-white: #FFFFFF;
+}
