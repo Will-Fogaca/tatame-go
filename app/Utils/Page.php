@@ -1,16 +1,27 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Utils;
 use \App\Utils\View;
-
-abstract class PageController{
+use \App\Session\LoginSession;
+ class Page{
   /**
   * Método responsável por renderizar o topo da página
   * @return string
   */
 
   private static function getHeader(){
-    return View::render('pages/header');
+
+    if(!LoginSession::isLogged()){
+        return View::render('shared/header');
+    }
+
+    $user = LoginSession::getUser();
+
+    return match($user['user_type']){
+        'admin'  => View::render('admin/header'),
+        'master' => View::render('master/header'),
+        default  => View::render('user/header'),
+    };
   }
 
   /**
@@ -19,7 +30,7 @@ abstract class PageController{
   */
 
   private static function getFooter(){
-    return View::render('pages/footer');
+    return View::render('shared/footer');
   }
 
 
@@ -28,7 +39,7 @@ abstract class PageController{
   * @return string
   */
   public static function getPage($title, $content){
-    return View::render('pages/page', [
+    return View::render('shared/page', [
         'title' => $title,
         'header' => self::getHeader(),
         'content' => $content,
@@ -55,13 +66,13 @@ abstract class PageController{
 
       $link = $url.'?'.http_build_query($queryParams);
      
-      $links .= View::render('pages/pagination/link', [
+      $links .= View::render('shared/pagination/link', [
         'page' => $page['page'],
         'link' => $link
       ]);
     }
 
-    return View::render('pages/pagination/box', [
+    return View::render('shared/pagination/box', [
       'links' => $links
     ]);
 

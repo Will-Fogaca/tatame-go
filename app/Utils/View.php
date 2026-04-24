@@ -24,7 +24,7 @@
       * @return string
     */
     private static function getContentView($view){
-      $file = __DIR__.'/../../resources/Views/'.$view.'.html';
+      $file = __DIR__.'/../../resources/views/'.$view.'.html';
       return file_exists($file) ? file_get_contents($file) : '';
     }
 
@@ -36,7 +36,6 @@
     */
     public static function render($view, $vars = []){
       $contentView = self::getContentView($view);
-      
       $vars = array_merge(self::$vars, $vars);
       
       foreach (array_keys($vars) as $key) {

@@ -1,5 +1,13 @@
-<h4>Alunos</h4>
 
+
+<h4>Academias</h4>
+<form method="GET">
+  <select name="academy_id" class="form-select" onchange="this.form.submit()">
+      {{academies}}
+  </select>
+</form>
+
+<h4>Alunos</h4>
 <table class="table table-light">
   <thead>
     <tr>

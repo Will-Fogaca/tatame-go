@@ -100,21 +100,25 @@ class Router{
     */
     private function getRoute(){
         $uri = $this->getUri();
+        
         $httpMethod = $this->request->getHttpMethod();
         foreach($this->routes as $patternRoute => $methods){
             if(preg_match($patternRoute, $uri, $matches)){
+
                 if(isset($methods[$httpMethod])){
                     unset($matches[0]);
 
                     $keys = $methods[$httpMethod]['variables'];
                     $methods[$httpMethod]['variables'] = array_combine($keys, $matches);
                     $methods[$httpMethod]['variables']['request'] = $this->request;
-
+                
                     return $methods[$httpMethod];
                 }
                 throw new Exception('Método não permitido', 405);
             }
         }
+
+       
 
         throw new Exception('URL não encontrada', 404);
     }
@@ -191,5 +195,17 @@ class Router{
      */
     public function getCurrentUrl(){
         return $this->url.$this->getUri();
+    }
+
+    /**
+     * Método responsável por redirecionar a URL        
+     *
+     * @param string $route
+     * @return void
+     */
+    public function redirect($route){
+        $url = $this->url.$route;
+        header('Location: '.$url);
+        exit;
     }
 }

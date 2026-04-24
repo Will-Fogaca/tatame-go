@@ -1,0 +1,62 @@
+<div class="container mt-4">
+
+  <!-- AÇÕES RÁPIDAS -->
+  <div class="d-flex gap-2 mb-4">
+    <a href="/academies/create" class="btn btn-primary">+ Academia</a>
+    <a href="/students/create" class="btn btn-success">+ Aluno</a>
+    <a href="/belts/create" class="btn btn-warning">+ Graduação</a>
+    <a href="/classes/create" class="btn btn-info">+ Aula</a>
+    <a href="/notices/create" class="btn btn-dark">+ Mural</a>
+  </div>
+
+  <!-- CARDS -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h6>Academias</h6>
+        <h3>{{total_academies}}</h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h6>Alunos</h6>
+        <h3>{{total_students}}</h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h6>Aulas (mês)</h6>
+        <h3>{{total_classes}}</h3>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h6>Avisos</h6>
+        <h3>{{total_notices}}</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATIVIDADES -->
+  <div class="row">
+    
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>Últimos alunos</h5>
+        {{recent_students}}
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5>Últimas aulas</h5>
+        {{recent_classes}}
+      </div>
+    </div>
+
+  </div>
+
+</div>

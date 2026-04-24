@@ -1,0 +1,27 @@
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <form method="GET" action="/admin/graduacao/">
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">
+                        Selecione a academia
+                    </label>
+
+                    <select name="academy_id" class="form-select" onchange="this.form.submit()">
+                        {{academies}}
+                    </select>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="mt-4">
+        {{belts}}
+    </div>
+
+</div>

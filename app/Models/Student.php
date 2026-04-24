@@ -67,7 +67,7 @@ class Student
     public $is_active;
 
     public function save(){
-        $this->id = (new Database('tb_student'))->insert([
+        $this->id = (new Database('students'))->insert([
             'name' => $this->name,
             'birth_date' => $this->birth_date, 
             'phone_number' => $this->phone_number,
@@ -92,7 +92,7 @@ class Student
      * @return PDOStatement
      */
    public static function list($where = null, $order = null, $limit = null, $offset = null, $fields = '*'){
-    return (new Database('tb_student'))->select($where, $order, $limit, $offset, $fields);
+        return (new Database('students'))->select($where, $order, $limit, $offset, $fields);
    }
 
 }
