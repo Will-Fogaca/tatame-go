@@ -1,0 +1,61 @@
+<div class="container mt-5">
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-warning text-dark">
+          <h5 class="mb-0">
+            <i class="bi bi-pencil-square"></i> Editar aviso
+          </h5>
+        </div>
+
+        <div class="card-body">
+
+          <form method="post" action="{{action}}">
+
+           <input type="hidden" name="id" value="{{id}}">
+           <input type="hidden" name="academy_id" value="{{academy_id}}">
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Título</label>
+              <input 
+                type="text" 
+                name="title" 
+                class="form-control form-control-lg"
+                value="{{title}}"
+                placeholder="Ex: Treino cancelado hoje">
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Conteúdo</label>
+              <textarea 
+                name="content" 
+                class="form-control" 
+                rows="5" 
+                required>{{content}}</textarea>
+            </div>
+
+            <div class="d-flex justify-content-between">
+
+              <a href="/admin/mural?academy_id={{academy_id}}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Voltar
+              </a>
+
+              <button type="submit" class="btn btn-success px-4">
+                <i class="bi bi-check-lg"></i> Atualizar
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

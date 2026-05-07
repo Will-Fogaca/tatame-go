@@ -6,4 +6,28 @@
   <td>{{guardian_name}}</td>
   <td>{{guardian_phone}}</td>
   <td>{{created_at}}</td>
+
+  <td class="text-end">    
+    <div class="d-flex justify-content-end gap-3">
+
+      <a href="/admin/aluno/graduacao?student_id={{id}}&academy_id={{academy_id}}" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-award me-2"></i> Graduação
+      </a>
+    
+      <a href="/admin/aluno/editar?id={{id}}&academy_id={{academy_id}}" class="btn btn-sm btn-primary">
+        <i class="bi bi-pencil"></i>
+      </a>
+
+      <form method="post" action="/admin/aluno/excluir" onsubmit="return confirm('Tem certeza que deseja excluir esta academia?')"class="m-0">
+        <input type="hidden" name="id" value="{{id}}">
+
+        <button type="submit" class="btn btn-sm btn-danger">
+          <i class="bi bi-trash"></i>
+        </button>
+
+      </form>
+    </div>
+
+  </td>
+
 </tr>

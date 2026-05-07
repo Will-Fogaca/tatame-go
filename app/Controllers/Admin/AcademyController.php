@@ -17,7 +17,6 @@ class AcademyController{
     private const DEFAULT_PAGE_PATH = 'admin/academy/';
 
     
-
     /**
      * Método responsável por retornar a página inicial das academias
      *
@@ -47,7 +46,12 @@ class AcademyController{
         return Page::getPage('Cadastro de academias', $content);
     }
 
-
+    /**
+     * Método responsável por criar uma academia
+     *
+     * @param Request $request
+     * @return void
+     */
     public static function postCreate($request){
         $postVars = $request->getPostVars();
         
@@ -173,6 +177,13 @@ class AcademyController{
         return self::getIndex($request);
     }
 
+
+    /**
+     * Método responsável por deletar a academia
+     *
+     * @param Request $request
+     * @return void
+     */
     public static function postDelete($request){
 
         $postVars = $request->getPostVars();
@@ -185,9 +196,7 @@ class AcademyController{
 
         $userId = LoginSession::getUserId();
 
-        $academy = Academy::list(
-            "id = '".$id."' AND user_id = '".$userId."'"
-        )->fetchObject(Academy::class);
+        $academy = Academy::list("id = '".$id."' AND user_id = '".$userId."'")->fetchObject(Academy::class);
 
         if(!$academy){
             return Page::getPage('Erro', 'Academia não encontrada');

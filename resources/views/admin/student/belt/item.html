@@ -1,0 +1,42 @@
+<tr>
+  <td class="fw-bold text-muted align-middle">
+    {{number}}
+  </td>
+
+  <td class="align-middle">
+    <span class="badge bg-dark">
+      {{belt}}
+    </span>
+  </td>
+
+  <td class="align-middle">
+    <span class="text-muted">
+      {{date}}
+    </span>
+  </td>
+
+  <td class="align-middle">
+    {{notes}}
+  </td>
+
+  <td class="align-middle">
+    <div class="d-flex gap-2">
+      
+      <a href="/admin/aluno/graduacao/editar?id={{id}}" class="btn btn-sm btn-primary">
+        <i class="bi bi-pencil"></i>
+      </a>
+
+     <form method="post" action="/admin/aluno/graduacao/excluir" onsubmit="return confirm('Tem certeza que deseja excluir este registro?')" class="m-0">
+      
+      <input type="hidden" name="id" value="{{id}}">
+      <input type="hidden" name="student_id" value="{{student_id}}">
+      <input type="hidden" name="academy_id" value="{{academy_id}}">
+
+      <button type="submit" class="btn btn-sm btn-danger">
+        <i class="bi bi-trash"></i>
+      </button>
+
+    </form>
+    </div>
+  </td>
+</tr>

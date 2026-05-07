@@ -118,8 +118,6 @@ class Router{
             }
         }
 
-       
-
         throw new Exception('URL não encontrada', 404);
     }
 

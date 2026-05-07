@@ -1,0 +1,48 @@
+<h4 class="mb-4">Nova Graduação</h4>
+
+<div class="card shadow-sm border-0">
+
+  <div class="card-header bg-white">
+    <strong>Adicionar graduação ao aluno</strong>
+  </div>
+
+  <div class="card-body">
+
+    <form method="post" action="/admin/aluno/graduacao/cadastrar">
+
+      <input type="hidden" name="student_id" value="{{student_id}}">
+      <input type="hidden" name="academy_id" value="{{academy_id}}">
+
+      <div class="mb-3">
+        <label class="form-label">Faixa</label>
+        <select name="belt_rank_id" class="form-select" required>
+          <option value="">Selecione a faixa</option>
+          {{belt_options}}
+        </select>
+      </div>
+
+  
+      <div class="mb-3">
+        <label class="form-label">Data da graduação</label>
+        <input type="date" name="awarded_at" class="form-control" value="{{today}}" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Observações</label>
+        <textarea name="notes" class="form-control" rows="3" placeholder="Opcional..."></textarea>
+      </div>
+
+      <div class="d-flex justify-content-between">
+
+        <a href="/admin/aluno/graduacao?student_id={{student_id}}&academy_id={{academy_id}}"class="btn btn-outline-secondary">
+          Voltar
+        </a>
+
+        <button type="submit" class="btn btn-success"> Salvar graduação </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

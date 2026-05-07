@@ -136,13 +136,15 @@ class Database{
    * @param  string $fields
    * @return PDOStatement
    */
-  public function select($where = null, $order = null, $limit = null, $offset = null, $fields = '*'){
-      $where  = !empty($where)  ? 'WHERE '.$where    : '';
-      $order  = !empty($order)  ? 'ORDER BY '.$order : '';
-      $limit  = !empty($limit)  ? 'LIMIT '.$limit    : '';
-      $offset = !empty($offset) ? 'OFFSET '.$offset  : '';
+  public function select($where = null, $order = null, $limit = null, $offset = null, $fields = '*', $join = null){
 
-      $query = 'SELECT '.$fields.' FROM '.$this->table.' '.$where.' '.$order.' '.$limit.' '.$offset;
+      $join   = !empty($join)   ? ' '.$join.' '       : '';
+      $where  = !empty($where)  ? 'WHERE '.$where     : '';
+      $order  = !empty($order)  ? 'ORDER BY '.$order  : '';
+      $limit  = !empty($limit)  ? 'LIMIT '.$limit     : '';
+      $offset = !empty($offset) ? 'OFFSET '.$offset   : '';
+
+      $query = 'SELECT '.$fields.' FROM '.$this->table.$join.' '.$where.' '.$order.' '.$limit.' '.$offset;
 
       return $this->execute($query);
   }

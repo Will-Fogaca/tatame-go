@@ -1,0 +1,51 @@
+<div class="card mb-3 shadow-sm border-0">
+  <div class="card-body">
+
+    <!-- TOPO -->
+    <div class="d-flex justify-content-between align-items-start mb-2">
+
+      <!-- TÍTULO -->
+      <h5 class="card-title mb-0 fw-semibold">
+        {{title}}
+      </h5>
+
+      <!-- AÇÕES -->
+      <div class="d-flex gap-2">
+        <a href="/admin/mural/editar?id={{id}}&academy_id={{academy_id}}" class="btn btn-sm btn-outline-primary">
+          <i class="bi bi-pencil"></i>
+        </a>
+
+        <form method="post" action="/admin/mural/excluir" onsubmit="return confirm('Tem certeza que deseja excluir este aviso?')" class="m-0">
+
+          <input type="hidden" name="id" value="{{id}}">
+
+          <button type="submit" class="btn btn-sm btn-outline-danger">
+            <i class="bi bi-trash"></i>
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+    <!-- CONTEÚDO -->
+    <p class="card-text text-muted mb-3">
+      {{content}}
+    </p>
+
+    <!-- RODAPÉ -->
+    <div class="d-flex justify-content-end gap-3 small text-muted">
+
+      <span>
+        <i class="bi bi-person"></i> {{author}}
+      </span>
+
+      <span>
+        <i class="bi bi-clock"></i> {{date}}
+      </span>
+
+    </div>
+
+  </div>
+</div>

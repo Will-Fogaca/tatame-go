@@ -9,18 +9,16 @@
     <div class="d-flex justify-content-end gap-2">
 
     <a href="/admin/academia/editar?id={{id}}" class="btn btn-sm btn-primary">
-      <i class="bi bi-pencil"></i> Editar
+       <i class="bi bi-pencil"></i>
     </a>
 
-    <form method="post" action="/admin/academia/excluir"
-          onsubmit="return confirm('Tem certeza que deseja excluir esta academia?')"
-          class="m-0">
+    <form method="post" action="/admin/academia/excluir" onsubmit="return confirm('Tem certeza que deseja excluir esta academia?')" class="m-0">
 
       <input type="hidden" name="id" value="{{id}}">
 
-      <button type="submit" class="btn btn-sm btn-danger">
-        <i class="bi bi-trash"></i> Excluir
-      </button>
+       <button type="submit" class="btn btn-sm btn-danger">
+          <i class="bi bi-trash"></i>
+       </button>
 
     </form>
 

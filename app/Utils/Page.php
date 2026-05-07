@@ -79,4 +79,24 @@ use \App\Session\LoginSession;
    }
 
 
+   /**
+    * Método responsável por exibir a tela de erros
+    *
+    * @param string $title
+    * @param string $message
+    * @param string $backUrl
+    * @return string
+    */
+   public static function getError($title, $message, $backUrl = '/'){
+
+      $content = \App\Utils\View::render('shared/error', [
+          'title' => $title,
+          'message' => $message,
+          'back_url' => $backUrl
+      ]);
+
+      return self::getPage('Erro', $content);
+  }
+
+
 }
