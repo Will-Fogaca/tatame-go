@@ -181,6 +181,8 @@ class StudentController{
             $academyStudent->student_id = $student->id;
             $academyStudent->save();
 
+        
+
             $request->getRouter()->redirect('/admin/aluno?academy_id='.$academyId);
 
         } catch (BusinessException $e) {

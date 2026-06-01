@@ -1,15 +1,13 @@
-<div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+<div class="container d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 72px);">
 
   <div class="card shadow-sm border-0" style="width: 100%; max-width: 420px;">
     <div class="card-body p-4">
 
-      <!-- TÍTULO -->
       <div class="text-center mb-4">
         <h4 class="fw-bold">Entrar no sistema</h4>
         <p class="text-muted mb-0">Acesse sua conta</p>
       </div>
 
-      <!-- FORM -->
       <form method="post">
 
         <div class="mb-3">
@@ -22,16 +20,12 @@
           <input type="password" name="password" class="form-control form-control-lg" required>
         </div>
 
-        <!-- LEMBRAR + ESQUECI -->
         <div class="d-flex justify-content-between align-items-center mb-3">
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id="remember">
             <label class="form-check-label" for="remember">Lembrar</label>
           </div>
-
-          <a href="/forgot-password" class="small text-decoration-none">
-            Esqueci a senha
-          </a>
+          <a href="/forgot-password" class="small text-decoration-none">Esqueci a senha</a>
         </div>
 
         {{status}}
@@ -42,10 +36,8 @@
 
       </form>
 
-      <!-- DIVISOR -->
       <hr class="my-4">
 
-      <!-- CADASTRO -->
       <div class="text-center">
         <p class="mb-2 text-muted">Ainda não tem conta?</p>
         <a href="/register" class="btn btn-outline-primary w-100">

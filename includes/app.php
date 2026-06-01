@@ -20,8 +20,7 @@
     Queue::setMap([
         'maintenance' => \App\Http\Middleware\Maintenance::class,
         'required-logout' => \App\Http\Middleware\RequireLogout::class,
-        'required-login' => \App\Http\Middleware\RequireLogin::class,
-        'access-control' => \App\Http\Middleware\AccessControl::class
+        'required-login' => \App\Http\Middleware\RequireLogin::class
     ]);
 
     Queue::setDefault([

@@ -11,6 +11,7 @@ use \App\Session\LoginSession;
 
   private static function getHeader(){
 
+
     if(!LoginSession::isLogged()){
         return View::render('shared/header');
     }

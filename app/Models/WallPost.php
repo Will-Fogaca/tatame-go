@@ -2,26 +2,25 @@
 
 namespace App\Models;
 
-use App\Utils\Database;
 use App\Utils\BusinessException;
 
-class WallPost
-{
+class WallPost extends Model {
+
     /**
-     * ID do post
-     * @var string UUID
+     * Nome da tabela
+     * @var string
      */
-    public $id;
+    protected static string $table = 'wall_posts';
 
     /**
      * ID da academia
-     * @var string UUID
+     * @var string
      */
     public $academy_id;
 
     /**
      * ID do usuário (autor)
-     * @var string UUID
+     * @var string
      */
     public $user_id;
 
@@ -37,27 +36,12 @@ class WallPost
      */
     public $content;
 
-    /**
-     * Data de criação
-     * @var string
-     */
-    public $created_at;
 
     /**
-     * Data de atualização
-     * @var string
-     */
-    public $updated_at;
-
-    /**
-     * Status ativo/inativo
-     * @var bool
-     */
-    public $is_active;
-
-    /**
-     * Valida os dados do post
+     * Método responsável por validar os dados do post
+     *
      * @throws BusinessException
+     * @return void
      */
     private function validate(): void {
 
@@ -73,7 +57,6 @@ class WallPost
             if(strlen(trim($this->title)) < 3){
                 throw new BusinessException('O título deve ter pelo menos 3 caracteres.');
             }
-
             if(strlen($this->title) > 150){
                 throw new BusinessException('O título deve ter no máximo 150 caracteres.');
             }
@@ -89,8 +72,26 @@ class WallPost
     }
 
     /**
+     * Método responsável por retornar os campos a serem gravados no banco
+     *
+     * @return array
+     */
+    protected function toArray(): array {
+        return [
+            'academy_id' => $this->academy_id,
+            'user_id'    => $this->user_id,
+            'title'      => $this->title,
+            'content'    => $this->content,
+            'is_active'  => $this->is_active,
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+    }
+
+    /**
      * Método responsável por salvar ou atualizar o post
+     *
      * @throws BusinessException
+     * @return void
      */
     public function save(): void {
 
@@ -99,77 +100,27 @@ class WallPost
 
         $this->validate();
 
-        $now = date('Y-m-d H:i:s');
-
-        $data = [
-            'academy_id' => $this->academy_id,
-            'user_id'    => $this->user_id,
-            'title'      => $this->title,
-            'content'    => $this->content,
-            'is_active'  => $this->is_active ?? true,
-            'updated_at' => $now
-        ];
-
-        if($this->id){
-            (new Database('wall_posts'))->update("id = '{$this->id}'", $data);
-        } else {
-            $this->created_at   = $now;
-            $data['created_at'] = $this->created_at;
-
-            $this->id = (new Database('wall_posts'))->insert($data);
+        if(!$this->id){
+            $this->created_at = date('Y-m-d H:i:s');
         }
+
+        parent::save();
     }
 
     /**
-     * Método responsável por listar posts
-     * @param string $where
-     * @param string $order
-     * @param string $limit
-     * @param string $offset
-     * @param string $fields
-     * @return \PDOStatement
-     */
-    public static function list($where = null, $order = null, $limit = null, $offset = null, $fields = '*'){
-        return (new Database('wall_posts'))->select($where, $order, $limit, $offset, $fields);
-    }
-
-
-    /**
-     * Método responsável por listar os posts pela academia
+     * Método responsável por listar os posts pela academia com o nome do autor
      *
      * @param string $academyId
      * @return \PDOStatement
      */
     public static function listByAcademy($academyId){
-
-        return (new Database('wall_posts'))->select(
+        return static::db()->select(
             "wall_posts.academy_id = '".$academyId."' AND wall_posts.is_active = TRUE",
             "wall_posts.created_at DESC",
             null,
             null,
             "wall_posts.*, users.name AS author",
             "INNER JOIN users ON users.id = wall_posts.user_id"
-        );
-    }
-
-    /**
-     * Método responsável por excluir (soft delete) o post
-     * @throws BusinessException
-     */
-    public function delete(): void {
-
-        if(empty($this->id)){
-            throw new BusinessException('Post não informado para exclusão.');
-        }
-
-        $now = date('Y-m-d H:i:s');
-
-        (new Database('wall_posts'))->update(
-            "id = '{$this->id}'",
-            [
-                'is_active' => false,
-                'updated_at' => $now
-            ]
         );
     }
 }

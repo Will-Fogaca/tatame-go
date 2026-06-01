@@ -9,21 +9,20 @@ services:
     volumes:
       - ./:/var/www/html/tatamego
     depends_on:
-      - mysql
+      - postgres
 
-  mysql:
-    image: mysql:8.4
+  postgres:
+    image: postgres:16
     container_name: tatamego_db
     restart: always
     environment:
-      MYSQL_DATABASE: tatamego_db
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_USER: tatamego
-      MYSQL_PASSWORD: 123456
+      POSTGRES_DB: tatamego_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
     ports:
-      - "3306:3306"
+      - "5433:5432"
     volumes:
-      - mysqldata:/var/lib/mysql
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  mysqldata:
+  pgdata:

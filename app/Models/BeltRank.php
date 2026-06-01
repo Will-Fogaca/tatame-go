@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use \App\Utils\Database;
-
-class BeltRank{
+class BeltRank extends Model {
 
     /**
-     * Id da graduação
-     * @var string|null
+     * Nome da tabela
+     * @var string
      */
-    public ?string $id = null;
+    protected static string $table = 'belt_ranks';
 
     /**
      * Id da academia
@@ -31,42 +29,25 @@ class BeltRank{
     public int $level;
 
     /**
-     * Data de criação
-     * @var string|null
-     */
-    public ?string $created_at = null;
-
-
-    /**
-     * Método responsável por listar as faixas-graduações
+     * Método responsável por retornar os campos a serem gravados no banco
      *
-     * @param string $where
-     * @param string $order
-     * @param string $limit
-     * @param string $offset
-     * @param string $fields
-     * @return \PDOStatement
+     * @return array
      */
-    public static function list($where = null, $order = null, $limit = null, $offset = null, $fields = '*'){
-        return (new Database('belt_ranks'))->select($where, $order, $limit, $offset, $fields);
+    protected function toArray(): array{
+        return [
+            'academy_id'  => $this->academy_id,
+            'description' => $this->description,
+            'level'       => $this->level,
+            'created_at'  => $this->created_at ?? date('Y-m-d H:i:s'),
+        ];
     }
 
     /**
-     * Método responsável por gravar uma nova graduação
+     * Método responsável por excluir a graduação (hard delete)
      *
-     * @return void
+     * @return boolean
      */
-    public function save(){
-
-        $this->created_at = $this->created_at ?? date('Y-m-d H:i:s');
-
-        $this->id = (new Database('belt_ranks'))->insert([
-            'academy_id'=> $this->academy_id,
-            'description'=> $this->description,
-            'level'=> $this->level,
-            'created_at' => $this->created_at
-        ]);
-
-        return $this->id;
+    public function delete(): bool{
+        return static::db()->delete("id = '{$this->id}'");
     }
 }

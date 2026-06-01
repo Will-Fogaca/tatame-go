@@ -1,54 +1,55 @@
 <?php 
 
 namespace App\Models;
-use DateTime;
-use \App\Utils\Database;
 
-
-class AcademyStudents {
+class AcademyStudents extends Model {
 
     /**
-     * Id do relacionamento academia-aluno
-     *
+     * Nome da tabela
      * @var string
      */
-    public string $id;
-    
+    protected static string $table = 'academy_students';
+
     /**
      * Id da academia
-     *
      * @var string
      */
     public string $academy_id;
 
     /**
      * Id do aluno
-     *
      * @var string
      */
-    public string $student_id; 
-
-    /**
-     * Data de criação do relacionamento
-     *
-     * @var string
-     */
-    public string $created_at;
+    public string $student_id;
 
 
     /**
-     * Método responsável por salvar o relacionamento entre aluno e academia]
-     * @return string
+     * Método responsável por retornar os campos a serem gravados no banco
+     *
+     * @return array
      */
-
-    public function save(){
-        $this->id = (new Database("academy_students"))->insert([
+    protected function toArray(): array{
+        return [
+            'id'         => $this->id, // ← adicione
             'academy_id' => $this->academy_id,
             'student_id' => $this->student_id,
-            'created_at'=> new DateTime()->format('Y-m-d H:i:s')
-        ]);
-
-        return $this->id;
+            'is_active'  => 1,
+            'created_at' => $this->created_at ?? date('Y-m-d H:i:s'),
+        ];
     }
 
+    /**
+     * Método responsável por salvar a relação no banco
+     *
+     * @return void
+     */
+    public function save(): void {
+        $isNew = empty($this->id); 
+
+        if($isNew){
+            $this->id = \Ramsey\Uuid\Uuid::uuid4()->toString();
+        }
+
+        $isNew ? $this->performInsert() : $this->performUpdate();
+    }
 }

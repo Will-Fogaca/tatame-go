@@ -32,9 +32,24 @@
     ]);
 
     $router->get('/register', [
-        'middleware' => ['required-logout'],
+        'middlewares' => ['required-logout'],
         function($request){
             return new Response(200, LoginController::getRegister($request));
+        }
+    ]);
+
+    $router->post('/register', [
+        'middlewares' => ['required-logout'],
+        function($request){
+            return new Response(200, LoginController::postRegister($request));
+        }
+    ]);
+
+    $router->get('/logout-force', [
+        function($request) {
+            session_start();
+            session_destroy();
+            return new Response(200, '<a href="/tatamego/login">ir para login</a>');
         }
     ]);
 

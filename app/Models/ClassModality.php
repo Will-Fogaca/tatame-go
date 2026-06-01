@@ -3,14 +3,13 @@
 namespace App\Models;
 use \App\Utils\Database;
 
-class ClassModality{
+class ClassModality extends Model{
     
     /**
-     * Id da modalidade da classe
-     *
-     * @var string #UUid
+     * Nome da tabela
+     * @var string
      */
-    public string $id;
+    protected static string $table = 'class_modalities';
 
     /**
      * Id da academia
@@ -26,35 +25,26 @@ class ClassModality{
      */
     public string $name;
 
-    /**
-     * Data de cadastro da modalidade
-     *
-     * @var string
-     */
-    public ?string $created_at = null;
-
-    /**
-     * Flag que indica se está ativo
-     *
-     * @var boolean
-     */
-    public bool $is_active = true;  
-
-
+    
      /**
-     * Método responsável por listar as faixas-graduações
+     * Método responsável por retornar os campos a serem gravados no banco
      *
-     * @param string $where
-     * @param string $order
-     * @param string $limit
-     * @param string $offset
-     * @param string $fields
-     * @return \PDOStatement
+     * @return array
      */
-    public static function list($where = null, $order = null, $limit = null, $offset = null, $fields = '*'){
-        return (new Database('class_modalities'))->select($where, $order, $limit, $offset, $fields);
+    protected function toArray(): array {
+        return [
+            'name'           => $this->name,
+            'academy_id'     => $this->academy_id,
+            'phone_number'   => $this->phone_number,
+            'guardian_name'  => $this->guardian_name,
+            'guardian_phone' => $this->guardian_phone,
+            'notes'          => $this->notes,
+            'is_active'      => $this->is_active,
+            'updated_at'     => date('Y-m-d H:i:s'),
+        ];
     }
 
 
+    
     
 }

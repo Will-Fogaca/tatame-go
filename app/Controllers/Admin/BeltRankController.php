@@ -25,10 +25,8 @@
             $queryParams = $request->getQueryParams();
             $academyId = $queryParams['academy_id'] ?? null;
 
-            // pega primeira academia se não vier nenhuma
             if(!$academyId){
-                $first = Academy::list("user_id = '".$userId."'", 'name ASC', '1')
-                    ->fetchObject(Academy::class);
+                $first = Academy::list("user_id = '".$userId."'", 'name ASC', '1')->fetchObject(Academy::class);
 
                 if($first){
                     $academyId = $first->id;
@@ -38,7 +36,7 @@
             $content = View::render(self::DEFAULT_PAGE_PATH.'index', [
                 'academies'  => self::renderAcademies($userId, $academyId),
                 'belts'      => self::renderBelts($academyId),
-                'academy_id' => $academyId // 🔥 ESSA LINHA QUE FALTAVA
+                'academy_id' => $academyId 
             ]);
 
             return Page::getPage('Graduações', $content);
@@ -88,7 +86,7 @@
             }
 
             $content = View::render(self::DEFAULT_PAGE_PATH.'create', [
-                'academy_id' => $academyId // 🔥 ESSENCIAL
+                'academy_id' => $academyId
             ]);
 
             return Page::getPage('Cadastro de graduações', $content);

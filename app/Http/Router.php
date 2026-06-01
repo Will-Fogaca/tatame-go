@@ -105,6 +105,7 @@ class Router{
         foreach($this->routes as $patternRoute => $methods){
             if(preg_match($patternRoute, $uri, $matches)){
 
+
                 if(isset($methods[$httpMethod])){
                     unset($matches[0]);
 
@@ -114,6 +115,8 @@ class Router{
                 
                     return $methods[$httpMethod];
                 }
+
+
                 throw new Exception('Método não permitido', 405);
             }
         }

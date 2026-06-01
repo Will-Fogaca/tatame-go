@@ -66,7 +66,7 @@ class Database{
   }
 
   /**
-   * Define a tabela e instancia e conexão
+   * Define a tabela e instancia a conexão
    * @param string $table
    */
   public function __construct($table = null){
@@ -77,19 +77,27 @@ class Database{
   /**
    * Método responsável por criar uma conexão com o banco de dados
    */
-    private function setConnection(){
-      try{
-        $this->connection = new PDO(
-          'pgsql:host='.self::$host.';port='.self::$port.';dbname='.self::$name,
-          self::$user,
-          self::$pass
-        );
+  private function setConnection(){
 
-        $this->connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    try{
 
-      }catch(PDOException $e){
-        die('ERROR: '.$e->getMessage());
-      }
+      $this->connection = new PDO(
+        'mysql:host='.self::$host.
+        ';port='.self::$port.
+        ';dbname='.self::$name.
+        ';charset=utf8mb4',
+
+        self::$user,
+        self::$pass
+      );
+
+      $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+    }catch(PDOException $e){
+
+      die('ERROR: '.$e->getMessage());
+    }
   }
 
   /**
@@ -98,12 +106,17 @@ class Database{
    * @param  array  $params
    * @return PDOStatement
    */
-  public function execute($query,$params = []){
+  public function execute($query, $params = []){
+
     try{
+
       $statement = $this->connection->prepare($query);
       $statement->execute($params);
+
       return $statement;
+
     }catch(PDOException $e){
+
       die('ERROR: '.$e->getMessage());
     }
   }
@@ -114,18 +127,24 @@ class Database{
    * @return integer ID inserido
    */
   public function insert($values){
-    $fields = array_keys($values);
-    $binds  = array_pad([], count($fields), '?');
 
-    $query = 'INSERT INTO '.$this->table.' ('.implode(',', $fields).') 
-              VALUES ('.implode(',', $binds).') 
-              RETURNING id';
+      foreach ($values as $key => $value) {
+          if (is_bool($value)) {
+              $values[$key] = $value ? 1 : 0;
+          }
+      }
 
-    $stmt = $this->execute($query, array_values($values));
+      $fields = array_keys($values);
+      $binds  = array_pad([], count($fields), '?');
 
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $result['id'] ?? null;
- }
+      $query = 'INSERT INTO '.$this->table.
+                ' ('.implode(',', $fields).') '.
+                'VALUES ('.implode(',', $binds).')';
+
+      $this->execute($query, array_values($values));
+
+      return $this->connection->lastInsertId();
+  }
 
   /**
    * Método responsável por executar uma consulta no banco
@@ -134,19 +153,29 @@ class Database{
    * @param  string $limit
    * @param  string $offset
    * @param  string $fields
+   * @param  string $join
    * @return PDOStatement
    */
   public function select($where = null, $order = null, $limit = null, $offset = null, $fields = '*', $join = null){
 
-      $join   = !empty($join)   ? ' '.$join.' '       : '';
-      $where  = !empty($where)  ? 'WHERE '.$where     : '';
-      $order  = !empty($order)  ? 'ORDER BY '.$order  : '';
-      $limit  = !empty($limit)  ? 'LIMIT '.$limit     : '';
-      $offset = !empty($offset) ? 'OFFSET '.$offset   : '';
+    $join   = !empty($join)   ? ' '.$join.' ' : '';
+    $where  = !empty($where)
+      ? 'WHERE '.$where.' AND '.$this->table.'.is_active = 1'
+      : 'WHERE '.$this->table.'.is_active = 1';
 
-      $query = 'SELECT '.$fields.' FROM '.$this->table.$join.' '.$where.' '.$order.' '.$limit.' '.$offset;
+    $order  = !empty($order)  ? 'ORDER BY '.$order : '';
+    $limit  = !empty($limit)  ? 'LIMIT '.$limit : '';
+    $offset = !empty($offset) ? 'OFFSET '.$offset : '';
 
-      return $this->execute($query);
+    $query = 'SELECT '.$fields.
+             ' FROM '.$this->table.
+             $join.' '.
+             $where.' '.
+             $order.' '.
+             $limit.' '.
+             $offset;
+
+    return $this->execute($query);
   }
 
   /**
@@ -157,20 +186,23 @@ class Database{
    */
   public function update($where, $values){
 
-      foreach ($values as $key => $value) {
+    foreach ($values as $key => $value) {
 
-          if (is_bool($value)) {
-              $values[$key] = $value ? 'TRUE' : 'FALSE';
-          }
+      if (is_bool($value)) {
+        $values[$key] = $value ? 1 : 0;
       }
+    }
 
-      $fields = array_keys($values);
+    $fields = array_keys($values);
 
-      $query = 'UPDATE '.$this->table.' SET '.implode('=?,', $fields).'=? WHERE '.$where;
+    $query = 'UPDATE '.$this->table.
+             ' SET '.implode('=?,', $fields).
+             '=? WHERE '.$where.
+             ' AND '.$this->table.'.is_active = 1';
 
-      $this->execute($query, array_values($values));
+    $this->execute($query, array_values($values));
 
-      return true;
+    return true;
   }
 
   /**
@@ -179,9 +211,13 @@ class Database{
    * @return boolean
    */
   public function delete($where){
-    $query = 'DELETE FROM '.$this->table.' WHERE '.$where;
+
+    $query = 'DELETE FROM '.$this->table.
+             ' WHERE '.$where.
+             ' AND '.$this->table.'.is_active = 1';
+
     $this->execute($query);
+
     return true;
   }
-
 }

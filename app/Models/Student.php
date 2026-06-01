@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use App\Utils\Database;
 use App\Utils\BusinessException;
 
-class Student
-{
+class Student extends Model {
+
     /**
-     * ID do aluno
-     * @var string UUID
+     * Nome da tabela
+     * @var string
      */
-    public $id;
+    protected static string $table = 'students';
 
     /**
      * Nome do aluno
@@ -49,27 +48,10 @@ class Student
      */
     public $notes;
 
-    /**
-     * Data de criação
-     * @var string
-     */
-    public $created_at;
 
     /**
-     * Data de atualização
-     * @var string
-     */
-    public $updated_at;
-
-    /**
-     * Status ativo/inativo
-     * @var bool
-     */
-    public $is_active;
-
-
-    /**
-     * Remove tudo que não é dígito de um telefone
+     * Método responsável por remover tudo que não é dígito de um telefone
+     *
      * @param string|null $phone
      * @return string|null
      */
@@ -80,12 +62,13 @@ class Student
     }
 
     /**
-     * Valida os dados do aluno antes de salvar
+     * Método responsável por validar os dados do aluno antes de salvar
+     *
      * @throws BusinessException
+     * @return void
      */
     private function validate(): void {
 
-        // Nome
         if(empty(trim($this->name ?? ''))){
             throw new BusinessException('O nome do aluno é obrigatório.');
         }
@@ -96,7 +79,6 @@ class Student
             throw new BusinessException('O nome do aluno deve ter no máximo 100 caracteres.');
         }
 
-        // Data de nascimento
         if(empty($this->birth_date)){
             throw new BusinessException('A data de nascimento é obrigatória.');
         }
@@ -116,7 +98,6 @@ class Student
             throw new BusinessException('A data de nascimento informada é inválida.');
         }
 
-        // Telefone do aluno
         if(!empty($this->phone_number)){
             $phoneDigits = preg_replace('/\D/', '', $this->phone_number);
             if(strlen($phoneDigits) < 10 || strlen($phoneDigits) > 11){
@@ -124,7 +105,6 @@ class Student
             }
         }
 
-        // Responsável obrigatório para menores de 18
         if($age < 18){
             if(empty(trim($this->guardian_name ?? ''))){
                 throw new BusinessException('Para menores de 18 anos, o nome do responsável é obrigatório.');
@@ -134,7 +114,6 @@ class Student
             }
         }
 
-        // Telefone do responsável
         if(!empty($this->guardian_phone)){
             $guardianPhoneDigits = preg_replace('/\D/', '', $this->guardian_phone);
             if(strlen($guardianPhoneDigits) < 10 || strlen($guardianPhoneDigits) > 11){
@@ -142,64 +121,57 @@ class Student
             }
         }
 
-        // Nome do responsável
         if(!empty($this->guardian_name) && strlen(trim($this->guardian_name)) < 3){
             throw new BusinessException('O nome do responsável deve ter pelo menos 3 caracteres.');
         }
 
-        // Observações
         if(!empty($this->notes) && strlen($this->notes) > 500){
             throw new BusinessException('As observações devem ter no máximo 500 caracteres.');
         }
     }
 
     /**
+     * Método responsável por retornar os campos a serem gravados no banco
+     *
+     * @return array
+     */
+    protected function toArray(): array {
+        return [
+            'id'          => $this->id,
+            'name'        => $this->name        ?: null,
+            'birth_date'  => $this->birth_date  ?: null,
+            'phone_number'  => $this->phone_number  ?: null,
+            'guardian_name'  => $this->guardian_name  ?: null,
+            'guardian_phone' => $this->guardian_phone ?: null,
+            'notes'       => $this->notes       ?: null,
+            'is_active'   => 1,
+            'created_at'  => $this->created_at,
+        ];
+    }
+    
+    /**
      * Método responsável por salvar ou atualizar o aluno no banco
+     *
      * @throws BusinessException
+     * @return void
      */
     public function save(): void {
 
-        // Sanitiza os campos antes de validar
-        $this->name          = trim($this->name ?? '');
-        $this->guardian_name = trim($this->guardian_name ?? '') ?: null;
-        $this->notes         = trim($this->notes ?? '') ?: null;
-        $this->phone_number  = self::sanitizePhone($this->phone_number);
-        $this->guardian_phone= self::sanitizePhone($this->guardian_phone);
+        $this->name           = trim($this->name ?? '');
+        $this->guardian_name  = trim($this->guardian_name ?? '') ?: null;
+        $this->notes          = trim($this->notes ?? '') ?: null;
+        $this->phone_number   = self::sanitizePhone($this->phone_number);
+        $this->guardian_phone = self::sanitizePhone($this->guardian_phone);
 
         $this->validate();
 
-        $now = date('Y-m-d H:i:s');
+        $isNew = empty($this->id); 
 
-        $data = [
-            'name'           => $this->name,
-            'birth_date'     => $this->birth_date,
-            'phone_number'   => $this->phone_number,
-            'guardian_name'  => $this->guardian_name,
-            'guardian_phone' => $this->guardian_phone,
-            'notes'          => $this->notes,
-            'is_active'      => $this->is_active,
-            'updated_at'     => $now,
-        ];
-
-        if($this->id){
-            (new Database('students'))->update("id = '{$this->id}'", $data);
-        } else {
-            $this->created_at  = $now;
-            $data['created_at']= $this->created_at;
-            $this->id = (new Database('students'))->insert($data);
+        if($isNew){
+            $this->id         = \Ramsey\Uuid\Uuid::uuid4()->toString();
+            $this->created_at = date('Y-m-d H:i:s');
         }
-    }
 
-    /**
-     * Método responsável por retornar alunos
-     * @param string $where
-     * @param string $order
-     * @param string $limit
-     * @param string $offset
-     * @param string $fields
-     * @return \PDOStatement
-     */
-    public static function list($where = null, $order = null, $limit = null, $offset = null, $fields = '*'){
-        return (new Database('students'))->select($where, $order, $limit, $offset, $fields);
+        $isNew ? $this->performInsert() : $this->performUpdate();
     }
 }

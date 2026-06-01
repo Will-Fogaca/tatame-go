@@ -15,10 +15,11 @@ class RequireLogout{
      */
     public function handle($request, $next){       
 
+
         if(LoginSession::isLogged()){
             $route = '';
             if(LoginSession::isAdmin()){
-                $route = '/admin/index';
+                $route = '/admin';
             }
 
             if (LoginSession::isMaster()){

@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use App\Utils\Database;
-
-class Academy{
+class Academy extends Model {
 
     /**
-     * Id
+     * Nome da tabela
      * @var string
      */
-    public $id;
+    protected static string $table = 'academies';
 
+  
     /**
      * Id do usuário
      * @var string
@@ -20,38 +19,15 @@ class Academy{
 
     /**
      * Nome da academia
-     *
      * @var string
      */
     public string $name;
 
     /**
      * Número de telefone da academia
-     *
-     * @var string
+     * @var string|null
      */
     public ?string $phone_number = null;
-
-    /**
-     * Data de criação da academia
-     *
-     * @var string|null
-     */
-    public ?string $created_at = null;
-
-    /**
-     * Data de modificação da academia
-     *
-     * @var string|null
-     */
-    public ?string $updated_at = null;
-
-    /**
-     * Flag de ativo ou não da academia
-     *
-     * @var boolean
-     */
-    public bool $is_active = true;
 
 
     /**
@@ -118,56 +94,16 @@ class Academy{
     }
 
     /**
-     * Método responsável por retornar todas as academias
+     * Método responsável por retornar os campos a serem gravados no banco
      *
-     * @param string $where
-     * @param string $order
-     * @param string $limit
-     * @param string $offset
-     * @param string $fields
-     * @return \PDOStatement
+     * @return array
      */
-    public static function list($where = null, $order = null, $limit = null, $offset = null, $fields = '*'){
-        return (new Database('academies'))->select($where, $order, $limit, $offset, $fields);        
-    }
-
-    /**
-     * Método responsável por salvar a academia
-     *
-     * @return void
-     */
-    public function save(){
-        $this->id = (new Database('academies'))->insert([
-            'user_id' => $this->user_id,
-            'name' => $this->name, 
+    protected function toArray(): array{
+        return [
+            'user_id'      => $this->user_id,
+            'name'         => $this->name,
             'phone_number' => $this->phone_number,
-            'is_active' => $this->is_active
-        ]);
+            'is_active'    => $this->is_active,
+        ];
     }
-
-
-    public function update(){
-
-        return (new Database('academies'))->update(
-            "id = '".$this->id."'",
-            [
-                'name' => $this->name,
-                'phone_number' => $this->phone_number,
-                'is_active' => $this->is_active,
-                'updated_at' => date('Y-m-d H:i:s')
-            ]
-        );
-    }
-
-   public function delete(){
-
-        return (new Database('academies'))->update(
-            "id = '".$this->id."'",
-            [
-                'is_active' => false,
-                'updated_at' => date('Y-m-d H:i:s')
-            ]
-        );
-    }
-
 }

@@ -12,7 +12,10 @@ class StudentBeltController {
     const DEFAULT_PAGE_PATH = 'admin/student/belt/';
 
     /**
-     * LISTAGEM
+     * Método responsável por renderizar a tela inicial das graduações dos alunos
+     *
+     * @param Request $request
+     * @return string
      */
     public static function getIndex($request){
 
@@ -36,7 +39,10 @@ class StudentBeltController {
 
 
     /**
-     * TELA DE CREATE
+     * Método responsável por renderizar a tela de cadastro das graduações dos alunos
+     *
+     * @param Request $request
+     * @return string
      */
     public static function getCreate($request){
 
@@ -59,9 +65,11 @@ class StudentBeltController {
         return Page::getPage('Cadastrar graduação do aluno', $content);
     }
 
-
     /**
-     * SALVAR NOVA GRADUAÇÃO
+     * Método responsável por cadastrar uma nova graduação para o aluno
+     *
+     * @param Request $request
+     * @return void
      */
     public static function postCreate($request){
 
@@ -92,9 +100,11 @@ class StudentBeltController {
         );
     }
 
-
     /**
-     * TELA DE EDIÇÃO
+     * Método responsável por renderizar a tela de edição das graduações dos alunos
+     *
+     * @param Request $request
+     * @return string
      */
     public static function getUpdate($request){
 
@@ -113,11 +123,11 @@ class StudentBeltController {
         }
 
         $content = View::render(self::DEFAULT_PAGE_PATH.'update', [
-            'id' => $graduation->id,
-            'student_id' => $graduation->student_id,
-            'academy_id' => $graduation->academy_id,
-            'awarded_at' => date('Y-m-d', strtotime($graduation->awarded_at)),
-            'notes' => $graduation->notes,
+            'id'                    => $graduation->id,
+            'student_id'            => $graduation->student_id,
+            'academy_id'            => $graduation->academy_id,
+            'awarded_at'            => date('Y-m-d', strtotime($graduation->awarded_at)),
+            'notes'                 => $graduation->notes,
             'belt_options_selected' => self::renderBeltOptions(
                 $graduation->academy_id,
                 $graduation->belt_rank_id
@@ -127,9 +137,11 @@ class StudentBeltController {
         return Page::getPage('Editar graduação', $content);
     }
 
-
     /**
-     * ATUALIZAR GRADUAÇÃO
+     * Método responsável por atualizar os dados de uma graduação dos alunos
+     *
+     * @param Request $request
+     * @return void
      */
     public static function postUpdate($request){
 
@@ -146,22 +158,28 @@ class StudentBeltController {
             return Page::getPage('Erro', 'Dados inválidos');
         }
 
-        $graduation = new StudentBeltRanks();
-        $graduation->id = $id;
-        $graduation->belt_rank_id = $beltRankId;
-        $graduation->awarded_at = $awardedAt;
-        $graduation->notes = $notes;
+        $graduation = StudentBeltRanks::getById($id);
 
-        $graduation->update();
+        if(!$graduation){
+            return Page::getPage('Erro', 'Graduação não encontrada');
+        }
+
+        $graduation->belt_rank_id = $beltRankId;
+        $graduation->awarded_at   = $awardedAt;
+        $graduation->notes        = $notes;
+
+        $graduation->save();
 
         $request->getRouter()->redirect(
             '/admin/aluno/graduacao?student_id='.$studentId.'&academy_id='.$academyId
         );
     }
 
-
     /**
-     * EXCLUIR GRADUAÇÃO
+     * Método responsável por excluir uma graduação do aluno
+     *
+     * @param Request $request
+     * @return void
      */
     public static function postDelete($request){
 
@@ -184,9 +202,12 @@ class StudentBeltController {
         );
     }
 
-
     /**
-     * LISTAGEM DE GRADUAÇÕES
+     * Método responsável por listar as graduações dos alunos
+     *
+     * @param string $studentId
+     * @param string $academyId
+     * @return string
      */
     private static function renderStudentBelts($studentId, $academyId){
 
