@@ -5,7 +5,7 @@
     use \App\Http\Router;
     $router->get('/', [
         function($request) { 
-            return new Response(200, HomeController::getHome());
+            return new Response(200, HomeController::getIndex());
         }
     ]);
 
@@ -24,7 +24,6 @@
     ]);
 
     $router->post('/logout', [
-        'middlewares' => ['required-login'],
         function ($request){
             return new Response(200, LoginController::postLogout($request));
         }

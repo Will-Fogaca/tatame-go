@@ -1,0 +1,35 @@
+<div class="row g-3">
+
+    <!-- Usuário encontrado -->
+    <div class="col-md-4">
+        <div class="card h-100 border-success">
+            <div class="card-header fw-semibold text-success">Usuário encontrado</div>
+            <div class="card-body">
+                <p class="mb-1"><strong>Nome:</strong> {{user_name}}</p>
+                <p class="mb-0"><strong>E-mail:</strong> {{user_email}}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de alunos -->
+    <div class="col-md-8">
+        <div class="card h-100">
+            <div class="card-header fw-semibold">Selecione o aluno para vincular</div>
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th class="text-center">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{options}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

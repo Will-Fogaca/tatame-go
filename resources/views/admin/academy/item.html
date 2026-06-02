@@ -1,28 +1,45 @@
 <tr>
-  <td>{{number}}</td>
-  <td>{{name}}</td>
-  <td>{{phone_number}}</td>
-  <td>{{created_at}}</td>
-  <td>{{is_active}}</td>
-  <td class="text-end">
-    
-    <div class="d-flex justify-content-end gap-2">
 
-    <a href="/admin/academia/editar?id={{id}}" class="btn btn-sm btn-primary">
-       <i class="bi bi-pencil"></i>
-    </a>
+  <td>
 
-    <form method="post" action="/admin/academia/excluir" onsubmit="return confirm('Tem certeza que deseja excluir esta academia?')" class="m-0">
+    <div class="d-flex gap-2">
 
-      <input type="hidden" name="id" value="{{id}}">
+      <a href="/admin/academia/editar?id={{id}}"
+         class="btn btn-sm btn-primary">
+        <i class="bi bi-pencil"></i>
+      </a>
 
-       <button type="submit" class="btn btn-sm btn-danger">
+      <form method="post"
+            action="/admin/academia/excluir"
+            onsubmit="return confirm('Tem certeza que deseja excluir esta academia?')"
+            class="m-0">
+
+        <input type="hidden" name="id" value="{{id}}">
+
+        <button type="submit" class="btn btn-sm btn-danger">
           <i class="bi bi-trash"></i>
-       </button>
+        </button>
 
-    </form>
+      </form>
 
-  </div>
+    </div>
 
   </td>
+
+  <td class="d-none d-md-table-cell">
+    {{number}}
+  </td>
+
+  <td>
+    {{name}}
+  </td>
+
+  <td class="d-none d-md-table-cell">
+    {{phone_number}}
+  </td>
+
+  <td>
+    {{created_at}}
+  </td>
+
 </tr>

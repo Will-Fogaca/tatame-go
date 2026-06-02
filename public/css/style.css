@@ -15,3 +15,20 @@
   --color-gray-light: #D9D9D9;
   --color-white: #FFFFFF;
 }
+
+.offcanvas-md {
+  min-height: 100vh;
+}
+
+@media (max-width: 767px) {
+
+  #app-layout {
+    display: block;
+  }
+
+}
+
+.table td,
+.table th {
+    white-space: nowrap;
+}

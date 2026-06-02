@@ -1,0 +1,22 @@
+<!-- Usuário encontrado -->
+<div class="card mb-3 border-success">
+    <div class="card-header fw-semibold text-success">Usuário encontrado</div>
+    <div class="card-body">
+        <p class="mb-1"><strong>Nome:</strong> {{user_name}}</p>
+        <p class="mb-3"><strong>E-mail:</strong> {{user_email}}</p>
+
+        <!-- Etapa 2: busca aluno por nome -->
+        <div class="border-top pt-3">
+            <p class="fw-semibold mb-2">2. Buscar aluno pelo nome</p>
+            <form method="POST" action="/admin/vinculos/buscar-aluno">
+                <input type="hidden" name="user_id" value="{{user_id}}">
+                <input type="hidden" name="document" value="">
+                <div class="input-group">
+                    <input type="text" name="search_name" class="form-control"
+                           placeholder="Digite o nome do aluno...">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

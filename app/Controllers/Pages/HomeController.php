@@ -4,19 +4,30 @@ namespace App\Controllers\Pages;
 
 use \App\Utils\View;
 use \App\Utils\Page;
+use \App\Session\LoginSession;
+use \App\Controllers\User;
 
 class HomeController {
 
-  /**
-  *Método responsável por retornar o conteúdo (view) da nossa home
-  * @return string
-  */
-  public static function getHome(){
-    
-    $content = View::render('shared/index', []);
+   public static function getIndex(){
 
-    return Page::getPage('Home', $content);
-  }
+        if(!LoginSession::isLogged()){
+            $content = View::render('shared/index', []);
+            return Page::getPage('TatameGO', $content);
+        }
 
+        $user = LoginSession::getUser();
 
+        return match($user['user_type']){
+
+            'admin' => \App\Controllers\Admin\HomeController::getIndex(null),
+
+            'user' => \App\Controllers\User\HomeController::getIndex(null),
+
+            default => Page::getError(
+                'Acesso negado',
+                'Tipo de usuário inválido.'
+            )
+        };
+    }
 }

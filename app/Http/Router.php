@@ -100,8 +100,10 @@ class Router{
     */
     private function getRoute(){
         $uri = $this->getUri();
-        
+       
         $httpMethod = $this->request->getHttpMethod();
+
+
         foreach($this->routes as $patternRoute => $methods){
             if(preg_match($patternRoute, $uri, $matches)){
 

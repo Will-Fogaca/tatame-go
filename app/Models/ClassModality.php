@@ -25,6 +25,7 @@ class ClassModality extends Model{
      */
     public string $name;
 
+
     
      /**
      * Método responsável por retornar os campos a serem gravados no banco
@@ -35,10 +36,6 @@ class ClassModality extends Model{
         return [
             'name'           => $this->name,
             'academy_id'     => $this->academy_id,
-            'phone_number'   => $this->phone_number,
-            'guardian_name'  => $this->guardian_name,
-            'guardian_phone' => $this->guardian_phone,
-            'notes'          => $this->notes,
             'is_active'      => $this->is_active,
             'updated_at'     => date('Y-m-d H:i:s'),
         ];

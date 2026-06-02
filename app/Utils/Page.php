@@ -11,18 +11,17 @@ use \App\Session\LoginSession;
 
   private static function getHeader(){
 
+      if(!LoginSession::isLogged()){
+          return '';
+      }
 
-    if(!LoginSession::isLogged()){
-        return View::render('shared/header');
-    }
+      $user = LoginSession::getUser();
 
-    $user = LoginSession::getUser();
-
-    return match($user['user_type']){
-        'admin'  => View::render('admin/header'),
-        'master' => View::render('master/header'),
-        default  => View::render('user/header'),
-    };
+      return match($user['user_type']){
+          'admin'  => View::render('admin/header'),
+          'master' => View::render('master/header'),
+          default  => View::render('user/header'),
+      };
   }
 
   /**
@@ -40,6 +39,7 @@ use \App\Session\LoginSession;
   * @return string
   */
   public static function getPage($title, $content){
+   
     return View::render('shared/page', [
         'title' => $title,
         'header' => self::getHeader(),

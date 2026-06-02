@@ -106,4 +106,27 @@ class Academy extends Model {
             'is_active'    => $this->is_active,
         ];
     }
+
+    /**
+     * Retorna academias vinculadas ao usuário via student_user → academy_students
+     *
+     * @param string $userId
+     * @param int|null $limit
+     * @return \PDOStatement
+     */
+    public static function listByUser($userId, $limit = null){
+
+        $limitSql = $limit ? 'LIMIT ' . (int)$limit : '';
+
+        $sql = "SELECT DISTINCT a.id, a.name
+                FROM academies a
+                INNER JOIN academy_students acs ON acs.academy_id = a.id AND acs.is_active = 1
+                INNER JOIN student_user su      ON su.student_id  = acs.student_id AND su.is_active = 1
+                WHERE su.user_id = '" . $userId . "'
+                AND a.is_active = 1
+                ORDER BY a.name ASC
+                " . $limitSql;
+
+        return static::db()->execute($sql);
+    }
 }

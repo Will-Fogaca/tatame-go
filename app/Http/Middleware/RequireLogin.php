@@ -14,7 +14,7 @@ class RequireLogin{
      * @return Response
      */
     public function handle($request, $next){       
-
+    
         if(!LoginSession::isLogged()){
 
             $request->getRouter()->redirect('/login');

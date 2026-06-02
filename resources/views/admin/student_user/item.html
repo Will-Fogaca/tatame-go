@@ -1,0 +1,16 @@
+<tr>
+    <td>{{number}}</td>
+    <td>{{user_name}}</td>
+    <td class="text-muted small">{{user_email}}</td>
+    <td>{{student_name}}</td>
+    <td class="small">{{created_at}}</td>
+    <td class="text-center">
+        <form method="POST" action="/admin/vinculos/excluir"
+              onsubmit="return confirm('Remover este vínculo?')">
+            <input type="hidden" name="id" value="{{id}}">
+            <button type="submit" class="btn btn-danger btn-sm">
+                <i class="bi bi-trash"></i>
+            </button>
+        </form>
+    </td>
+</tr>

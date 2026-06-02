@@ -86,6 +86,7 @@
             }
 
             $content = View::render(self::DEFAULT_PAGE_PATH.'create', [
+                'error' => '',
                 'academy_id' => $academyId
             ]);
 

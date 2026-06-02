@@ -1,220 +1,161 @@
-@if(auth()->check())
+<!-- HERO -->
+<section class="bg-primary text-white py-5">
+  <div class="container">
+    <div class="row align-items-center">
 
-<div class="container-fluid p-4">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold mb-3">
+          Gestão completa para sua academia
+        </h1>
 
-  <!-- TÍTULO -->
-  <div class="mb-4">
-    <h2 class="fw-bold">Painel Administrativo</h2>
-    <p class="text-muted mb-0">
-      Gerencie sua academia, alunos, graduações e conteúdos.
+        <p class="lead mb-4">
+          Controle alunos, graduações, aulas, avisos e unidades em uma única plataforma.
+        </p>
+
+        <div class="d-flex gap-2 flex-wrap">
+          <a href="/cadastrar" class="btn btn-light btn-lg">
+            Criar conta grátis
+          </a>
+
+          <a href="/login" class="btn btn-outline-light btn-lg">
+            Entrar
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <img
+          src="/public/imgs/logo.png"
+          alt="TatameGO"
+          class="img-fluid"
+          style="max-height: 350px;"
+        >
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FUNCIONALIDADES -->
+<section class="py-5 bg-white">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Tudo que sua academia precisa</h2>
+      <p class="text-muted">
+        Organize sua operação de forma simples e profissional.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-md-3">
+        <div class="card h-100 shadow-sm border-0 text-center">
+          <div class="card-body">
+            <div class="fs-1 mb-3">🏫</div>
+            <h5>Academias</h5>
+            <p class="text-muted">
+              Gerencie múltiplas unidades facilmente.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card h-100 shadow-sm border-0 text-center">
+          <div class="card-body">
+            <div class="fs-1 mb-3">🥋</div>
+            <h5>Alunos</h5>
+            <p class="text-muted">
+              Cadastre e acompanhe a evolução dos alunos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card h-100 shadow-sm border-0 text-center">
+          <div class="card-body">
+            <div class="fs-1 mb-3">🎓</div>
+            <h5>Graduações</h5>
+            <p class="text-muted">
+              Controle faixas e progressões.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card h-100 shadow-sm border-0 text-center">
+          <div class="card-body">
+            <div class="fs-1 mb-3">📅</div>
+            <h5>Aulas</h5>
+            <p class="text-muted">
+              Organize horários e turmas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Como funciona</h2>
+    </div>
+
+    <div class="row text-center g-4">
+
+      <div class="col-md-4">
+        <div class="fs-1 mb-3">1️⃣</div>
+        <h5>Cadastre sua academia</h5>
+        <p class="text-muted">
+          Configure sua unidade em poucos minutos.
+        </p>
+      </div>
+
+      <div class="col-md-4">
+        <div class="fs-1 mb-3">2️⃣</div>
+        <h5>Adicione seus alunos</h5>
+        <p class="text-muted">
+          Registre alunos, graduações e informações importantes.
+        </p>
+      </div>
+
+      <div class="col-md-4">
+        <div class="fs-1 mb-3">3️⃣</div>
+        <h5>Gerencie tudo</h5>
+        <p class="text-muted">
+          Acompanhe aulas, avisos e evolução dos praticantes.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="py-5 bg-dark text-white">
+  <div class="container text-center">
+
+    <h2 class="fw-bold mb-3">
+      Pronto para modernizar sua academia?
+    </h2>
+
+    <p class="mb-4">
+      Comece agora gratuitamente.
     </p>
-  </div>
 
-  <!-- AÇÕES RÁPIDAS -->
-  <div class="row g-3 mb-4">
-
-    <div class="col-md-2">
-      <a href="/admin/academia/cadastrar" class="btn btn-primary w-100 py-3">
-        + Academia
-      </a>
-    </div>
-
-    <div class="col-md-2">
-      <a href="/admin/aluno/cadastrar" class="btn btn-success w-100 py-3">
-        + Aluno
-      </a>
-    </div>
-
-    <div class="col-md-2">
-      <a href="/admin/graduacao/cadastrar" class="btn btn-warning w-100 py-3">
-        + Graduação
-      </a>
-    </div>
-
-    <div class="col-md-2">
-      <a href="/admin/aula/cadastrar" class="btn btn-info w-100 py-3">
-        + Aula
-      </a>
-    </div>
-
-    <div class="col-md-2">
-      <a href="/admin/mural/cadastrar" class="btn btn-dark w-100 py-3">
-        + Aviso
-      </a>
-    </div>
+    <a href="/cadastrar" class="btn btn-primary btn-lg">
+      Criar minha conta
+    </a>
 
   </div>
-
-  <!-- CARDS DE RESUMO -->
-  <div class="row g-4 mb-4">
-
-    <div class="col-lg-3 col-md-6">
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <h6 class="text-muted">Academias</h6>
-          <h2 class="fw-bold mb-0">{{ $total_academies }}</h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <h6 class="text-muted">Alunos</h6>
-          <h2 class="fw-bold mb-0">{{ $total_students }}</h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <h6 class="text-muted">Aulas do mês</h6>
-          <h2 class="fw-bold mb-0">{{ $total_classes }}</h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <h6 class="text-muted">Avisos</h6>
-          <h2 class="fw-bold mb-0">{{ $total_notices }}</h2>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- CONTEÚDO -->
-  <div class="row g-4">
-
-    <!-- ÚLTIMOS ALUNOS -->
-    <div class="col-lg-6">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-header bg-white">
-          <h5 class="mb-0">Últimos alunos cadastrados</h5>
-        </div>
-        <div class="card-body">
-          {{ $recent_students }}
-        </div>
-      </div>
-    </div>
-
-    <!-- PRÓXIMAS AULAS -->
-    <div class="col-lg-6">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-header bg-white">
-          <h5 class="mb-0">Próximas aulas</h5>
-        </div>
-        <div class="card-body">
-          {{ $recent_classes }}
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- SEGUNDA LINHA -->
-  <div class="row g-4 mt-1">
-
-    <!-- MURAL -->
-    <div class="col-lg-6">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-header bg-white">
-          <h5 class="mb-0">Últimos avisos</h5>
-        </div>
-        <div class="card-body">
-          {{ $recent_notices }}
-        </div>
-      </div>
-    </div>
-
-    <!-- RESUMO -->
-    <div class="col-lg-6">
-      <div class="card shadow-sm border-0 h-100">
-        <div class="card-header bg-white">
-          <h5 class="mb-0">Resumo do sistema</h5>
-        </div>
-        <div class="card-body">
-
-          <div class="d-flex justify-content-between mb-3">
-            <span>Total de academias</span>
-            <strong>{{ $total_academies }}</strong>
-          </div>
-
-          <div class="d-flex justify-content-between mb-3">
-            <span>Total de alunos</span>
-            <strong>{{ $total_students }}</strong>
-          </div>
-
-          <div class="d-flex justify-content-between mb-3">
-            <span>Aulas cadastradas</span>
-            <strong>{{ $total_classes }}</strong>
-          </div>
-
-          <div class="d-flex justify-content-between">
-            <span>Avisos publicados</span>
-            <strong>{{ $total_notices }}</strong>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-@else
-
-<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 80vh;">
-
-  <div class="text-center mb-5">
-    <h1 class="fw-bold display-5 mb-3">Gerencie sua academia com facilidade</h1>
-    <p class="text-muted fs-5 mb-4">
-      Controle alunos, graduações, aulas e avisos em um só lugar.<br>Simples e eficiente.
-    </p>
-    <a href="/cadastrar" class="btn btn-primary btn-lg me-2">Criar conta gratuita</a>
-    <a href="/login" class="btn btn-outline-secondary btn-lg">Já tenho conta</a>
-  </div>
-
-  <div class="row g-3 w-100" style="max-width: 800px;">
-
-    <div class="col-sm-6 col-md-3">
-      <div class="card border-0 bg-light text-center p-3 h-100">
-        <div class="fs-2 mb-2">🏫</div>
-        <h6 class="fw-bold mb-1">Academias</h6>
-        <p class="text-muted small mb-0">Gerencie todas as suas unidades</p>
-      </div>
-    </div>
-
-    <div class="col-sm-6 col-md-3">
-      <div class="card border-0 bg-light text-center p-3 h-100">
-        <div class="fs-2 mb-2">🥋</div>
-        <h6 class="fw-bold mb-1">Alunos</h6>
-        <p class="text-muted small mb-0">Cadastre e acompanhe seus alunos</p>
-      </div>
-    </div>
-
-    <div class="col-sm-6 col-md-3">
-      <div class="card border-0 bg-light text-center p-3 h-100">
-        <div class="fs-2 mb-2">🎓</div>
-        <h6 class="fw-bold mb-1">Graduações</h6>
-        <p class="text-muted small mb-0">Registre faixas e progressos</p>
-      </div>
-    </div>
-
-    <div class="col-sm-6 col-md-3">
-      <div class="card border-0 bg-light text-center p-3 h-100">
-        <div class="fs-2 mb-2">📅</div>
-        <h6 class="fw-bold mb-1">Aulas</h6>
-        <p class="text-muted small mb-0">Organize a agenda do mês</p>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-@endif
+</section>
