@@ -57,7 +57,17 @@ class Request{
         $this->router = $router;
         $this->queryParams = $_GET ?? [];
         $this->postVars = $_POST ?? [];
-        $this->headers = getallheaders(); 
+        $this->headers = function_exists('getallheaders') ? getallheaders() : array_reduce(
+            array_keys($_SERVER),
+            function($headers, $key) {
+                if (substr($key, 0, 5) === 'HTTP_') {
+                    $name = str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($key, 5)))));
+                    $headers[$name] = $_SERVER[$key];
+                }
+                return $headers;
+            },
+            []
+        );
         $this->httpMethod = $_SERVER['REQUEST_METHOD'] ?? '';
         $this->setUri();
     }
