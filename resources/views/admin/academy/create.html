@@ -1,8 +1,10 @@
-<h4 class="mb-4">Cadastrar Academia</h4>
+<div class="page-header mb-4">
+  <h4 class="fw-bold mb-1">Cadastrar Academia</h4>
+  <p class="text-muted mb-0">Informe os dados principais da academia.</p>
+</div>
 
-<div class="card shadow-sm border-0">
-
-  <div class="card-body">
+<div class="card shadow-sm border-0 form-card">
+  <div class="card-body p-4 p-md-5">
 
     <form method="post" action="/admin/academia/cadastrar">
 
@@ -11,7 +13,8 @@
         <input
           type="text"
           name="name"
-          class="form-control"
+          class="form-control form-control-lg"
+          autocomplete="organization"
           required
         >
       </div>
@@ -21,16 +24,18 @@
         <input
           type="text"
           name="phone_number"
-          class="form-control"
+          class="form-control form-control-lg"
+          autocomplete="tel"
+          placeholder="(11) 99999-9999"
         >
       </div>
 
-      <div class="d-grid d-md-flex gap-2">
-        <button type="submit" class="btn btn-primary">
+      <div class="d-grid d-sm-flex gap-2">
+        <button type="submit" class="btn btn-primary btn-lg">
           Salvar
         </button>
 
-        <a href="/admin/academia" class="btn btn-outline-secondary">
+        <a href="/admin/academia" class="btn btn-outline-secondary btn-lg">
           Voltar
         </a>
       </div>
@@ -38,5 +43,21 @@
     </form>
 
   </div>
-
 </div>
+
+<style>
+  .form-card {
+    max-width: 720px;
+    border-radius: 1rem;
+  }
+
+  @media (max-width: 575.98px) {
+    .page-header {
+      text-align: center;
+    }
+
+    .form-card {
+      max-width: 100%;
+    }
+  }
+</style>

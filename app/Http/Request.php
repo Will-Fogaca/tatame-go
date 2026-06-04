@@ -57,6 +57,7 @@ class Request{
         $this->router = $router;
         $this->queryParams = $_GET ?? [];
         $this->postVars = $_POST ?? [];
+<<<<<<< HEAD
         $this->headers = function_exists('getallheaders') ? getallheaders() : array_reduce(
             array_keys($_SERVER),
             function($headers, $key) {
@@ -68,6 +69,9 @@ class Request{
             },
             []
         );
+=======
+        $this->headers = function_exists('getallheaders') ? getallheaders(): [];
+>>>>>>> 3640fa0 (final)
         $this->httpMethod = $_SERVER['REQUEST_METHOD'] ?? '';
         $this->setUri();
     }

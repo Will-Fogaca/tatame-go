@@ -1,0 +1,18 @@
+<tr>
+    <td>{{number}}</td>
+    <td>{{name}}</td>
+    <td class="text-center">
+        <div class="d-flex gap-1 justify-content-center">
+            <a href="/admin/aula/modalidade/editar?id={{id}}" class="btn btn-warning btn-sm">
+                <i class="bi bi-pencil"></i>
+            </a>
+            <form method="POST" action="/admin/aula/modalidade/excluir" onsubmit="return confirm('Excluir esta modalidade?')">
+                <input type="hidden" name="id" value="{{id}}">
+                <input type="hidden" name="academy_id" value="{{academy_id}}">
+                <button type="submit" class="btn btn-danger btn-sm">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </form>
+        </div>
+    </td>
+</tr>

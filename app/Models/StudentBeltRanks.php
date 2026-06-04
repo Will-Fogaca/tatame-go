@@ -42,7 +42,7 @@ class StudentBeltRanks extends Model {
 
 
     /**
-     * Método responsável por retornar os campos a serem gravados no banco
+     * Método responsável por retornar o objeto em formato de array
      *
      * @return array
      */

@@ -1,22 +1,89 @@
-<!-- Usuário encontrado -->
-<div class="card mb-3 border-success">
-    <div class="card-header fw-semibold text-success">Usuário encontrado</div>
-    <div class="card-body">
-        <p class="mb-1"><strong>Nome:</strong> {{user_name}}</p>
-        <p class="mb-3"><strong>E-mail:</strong> {{user_email}}</p>
+<div class="card shadow-sm border-0 user-found-card mb-4">
+  <div class="card-body p-3 p-sm-4">
 
-        <!-- Etapa 2: busca aluno por nome -->
-        <div class="border-top pt-3">
-            <p class="fw-semibold mb-2">2. Buscar aluno pelo nome</p>
-            <form method="POST" action="/admin/vinculos/buscar-aluno">
-                <input type="hidden" name="user_id" value="{{user_id}}">
-                <input type="hidden" name="document" value="">
-                <div class="input-group">
-                    <input type="text" name="search_name" class="form-control"
-                           placeholder="Digite o nome do aluno...">
-                    <button type="submit" class="btn btn-primary">Buscar</button>
-                </div>
-            </form>
-        </div>
+    <div class="d-flex align-items-center gap-3 mb-3">
+      <div class="user-found-icon">
+        <i class="bi bi-person-check"></i>
+      </div>
+
+      <div>
+        <h6 class="fw-bold mb-0 text-success">Usuário encontrado</h6>
+        <small class="text-muted">Dados do usuário localizado</small>
+      </div>
     </div>
+
+    <div class="info-line">
+      <span>Nome</span>
+      <strong>{{user_name}}</strong>
+    </div>
+
+    <div class="info-line">
+      <span>E-mail</span>
+      <strong class="text-break">{{user_email}}</strong>
+    </div>
+
+    <div class="border-top pt-3 mt-3">
+      <p class="fw-semibold mb-2">2. Buscar aluno pelo nome</p>
+
+      <form method="POST" action="/admin/vinculos/buscar-aluno">
+        <input type="hidden" name="user_id" value="{{user_id}}">
+        <input type="hidden" name="document" value="">
+
+        <div class="row g-2">
+          <div class="col-12 col-sm">
+            <input
+              type="text"
+              name="search_name"
+              class="form-control form-control-lg"
+              placeholder="Digite o nome do aluno..."
+            >
+          </div>
+
+          <div class="col-12 col-sm-auto">
+            <button type="submit" class="btn btn-primary btn-lg w-100">
+              <i class="bi bi-search me-1"></i>
+              Buscar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
 </div>
+
+<style>
+  .user-found-card {
+    border-radius: 1rem;
+    border-left: 4px solid #198754 !important;
+  }
+
+  .user-found-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 0.85rem;
+    background: rgba(25, 135, 84, 0.12);
+    color: #198754;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+  }
+
+  .info-line {
+    padding: 0.75rem 0;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .info-line span {
+    display: block;
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 0.15rem;
+  }
+
+  .info-line strong {
+    display: block;
+  }
+</style>

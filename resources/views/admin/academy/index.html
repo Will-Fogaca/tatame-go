@@ -1,29 +1,28 @@
-<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-stretch align-items-md-center mb-4 gap-3">
+  <div>
+    <h4 class="fw-bold mb-1">Academias</h4>
+    <p class="text-muted mb-0">Gerencie as academias cadastradas.</p>
+  </div>
 
-  <h4 class="mb-0">Academias</h4>
-
-  <a href="/admin/academia/cadastrar" class="btn btn-primary">
+  <a href="/admin/academia/cadastrar" class="btn btn-primary btn-lg">
     <i class="bi bi-plus-lg"></i>
     Nova Academia
   </a>
-
 </div>
 
-<div class="card shadow-sm border-0">
-
+<div class="card shadow-sm border-0 academies-card">
   <div class="card-body p-0">
 
-    <div class="table-responsive">
-
-      <table class="table table-hover align-middle mb-0">
+    <div class="table-responsive-md">
+      <table class="table table-hover align-middle mb-0 responsive-table">
 
         <thead class="table-light">
           <tr>
-            <th width="120">Ações</th>
-            <th class="d-none d-md-table-cell">#</th>
+            <th>#</th>
             <th>Nome da academia</th>
-            <th class="d-none d-md-table-cell">Telefone</th>
+            <th>Telefone</th>
             <th>Data de cadastro</th>
+            <th width="120">Ações</th>
           </tr>
         </thead>
 
@@ -32,13 +31,82 @@
         </tbody>
 
       </table>
-
     </div>
 
   </div>
-
 </div>
 
-<div class="mt-4">
+<div class="mt-4 pagination-wrapper">
   {{pagination}}
 </div>
+
+<style>
+  .academies-card {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  @media (max-width: 767.98px) {
+    .responsive-table thead {
+      display: none;
+    }
+
+    .responsive-table,
+    .responsive-table tbody,
+    .responsive-table tr,
+    .responsive-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .responsive-table tbody {
+      padding: 0.75rem;
+    }
+
+    .responsive-table tr {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 1rem;
+      padding: 0.75rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    }
+
+    .responsive-table td {
+      border: 0;
+      padding: 0.45rem 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      text-align: right;
+    }
+
+    .responsive-table td::before {
+      content: attr(data-label);
+      font-weight: 600;
+      color: #64748b;
+      text-align: left;
+    }
+
+    .responsive-table td:first-child {
+      justify-content: flex-start;
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .responsive-table td:first-child::before {
+      display: none;
+    }
+
+    .responsive-table td:first-child .btn {
+      flex: 1;
+    }
+
+    .pagination-wrapper .pagination {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+  }
+</style>

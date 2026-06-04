@@ -1,42 +1,47 @@
 <tr>
-  <td class="fw-bold text-muted align-middle">
+  <td data-label="#" class="fw-bold text-muted align-middle">
     {{number}}
   </td>
 
-  <td class="align-middle">
+  <td data-label="Faixa" class="align-middle">
     <span class="badge bg-dark">
       {{belt}}
     </span>
   </td>
 
-  <td class="align-middle">
+  <td data-label="Data" class="align-middle">
     <span class="text-muted">
       {{date}}
     </span>
   </td>
 
-  <td class="align-middle">
+  <td data-label="Observações" class="align-middle">
     {{notes}}
   </td>
 
-  <td class="align-middle">
-    <div class="d-flex gap-2">
-      
+  <td data-label="Ações" class="align-middle">
+    <div class="d-grid d-sm-flex gap-2">
+
       <a href="/admin/aluno/graduacao/editar?id={{id}}" class="btn btn-sm btn-primary">
         <i class="bi bi-pencil"></i>
+        <span class="d-sm-none ms-1">Editar</span>
       </a>
 
-     <form method="post" action="/admin/aluno/graduacao/excluir" onsubmit="return confirm('Tem certeza que deseja excluir este registro?')" class="m-0">
-      
-      <input type="hidden" name="id" value="{{id}}">
-      <input type="hidden" name="student_id" value="{{student_id}}">
-      <input type="hidden" name="academy_id" value="{{academy_id}}">
+      <form method="post"
+            action="/admin/aluno/graduacao/excluir"
+            onsubmit="return confirm('Tem certeza que deseja excluir este registro?')"
+            class="m-0">
 
-      <button type="submit" class="btn btn-sm btn-danger">
-        <i class="bi bi-trash"></i>
-      </button>
+        <input type="hidden" name="id" value="{{id}}">
+        <input type="hidden" name="student_id" value="{{student_id}}">
+        <input type="hidden" name="academy_id" value="{{academy_id}}">
 
-    </form>
+        <button type="submit" class="btn btn-sm btn-danger w-100">
+          <i class="bi bi-trash"></i>
+          <span class="d-sm-none ms-1">Excluir</span>
+        </button>
+
+      </form>
     </div>
   </td>
 </tr>

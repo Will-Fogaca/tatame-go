@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0">Novo Horário</h4>
+    <a href="/admin/aula/horario?academy_id={{academy_id}}" class="btn btn-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i> Voltar
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST" action="/admin/aula/horario/cadastrar">
+
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Academia <span class="text-danger">*</span></label>
+                    <select name="academy_id" class="form-select" required onchange="reloadPage(this.value)">
+                        <option value="">Selecione...</option>
+                        {{academies}}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Modalidade</label>
+                    <select name="modality_id" class="form-select">
+                        {{modalities}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Dia da semana <span class="text-danger">*</span></label>
+                    <select name="weekday" class="form-select" required>
+                        {{weekdays}}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Início <span class="text-danger">*</span></label>
+                    <input type="time" name="start_time" class="form-control" value="{{start_time}}" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Fim</label>
+                    <input type="time" name="end_time" class="form-control" value="{{end_time}}">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Observações</label>
+                <input type="text" name="notes" class="form-control" value="{{notes}}" placeholder="Opcional...">
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-lg me-1"></i> Salvar
+                </button>
+                <a href="/admin/aula/horario?academy_id={{academy_id}}" class="btn btn-outline-secondary">Cancelar</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+function reloadPage(academyId) {
+    if (academyId) window.location.href = '/admin/aula/horario/cadastrar?academy_id=' + academyId;
+}
+</script>

@@ -1,0 +1,25 @@
+<tr>
+    <td>{{number}}</td>
+    <td>{{class_date}}</td>
+    <td>{{start_time}}</td>
+    <td>{{end_time}}</td>
+    <td>{{modality_name}}</td>
+    <td class="text-muted small">{{notes}}</td>
+    <td class="text-center">
+        <div class="d-flex gap-1 justify-content-center">
+            <a href="/admin/aula/presenca?id={{id}}" class="btn btn-success btn-sm" title="Presença">
+                <i class="bi bi-person-check"></i>
+            </a>
+            <a href="/admin/aula/editar?id={{id}}" class="btn btn-warning btn-sm" title="Editar">
+                <i class="bi bi-pencil"></i>
+            </a>
+            <form method="POST" action="/admin/aula/excluir" onsubmit="return confirm('Excluir esta aula?')">
+                <input type="hidden" name="id" value="{{id}}">
+                <input type="hidden" name="academy_id" value="{{academy_id}}">
+                <button type="submit" class="btn btn-danger btn-sm" title="Excluir">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </form>
+        </div>
+    </td>
+</tr>

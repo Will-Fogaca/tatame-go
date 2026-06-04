@@ -1,42 +1,27 @@
-<?php 
+<?php
 
 namespace App\Models;
 
-class ClassSchedule extends Model{
-    
-    /**
-     * Nome da tabela
-     * @var string
-     */
+class ClassSchedule extends Model {
+
     protected static string $table = 'class_schedules';
 
-    /**
-     * Id da academia
-     *
-     * @var string #UUid
-     */
-    public string $academy_id;
+    public $academy_id  = null;
+    public $modality_id = null;
+    public $weekday     = null;
+    public $start_time  = null;
+    public $end_time    = null;
+    public $notes       = null;
 
-    /**
-     * Nome da modalidade
-     *
-     * @var string
-     */
-    public string $name;
-
-
-    
-     /**
-     * Método responsável por retornar os campos a serem gravados no banco
-     *
-     * @return array
-     */
     protected function toArray(): array {
         return [
-            'name'           => $this->name,
-            'academy_id'     => $this->academy_id,
-            'is_active'      => $this->is_active,
-            'updated_at'     => date('Y-m-d H:i:s'),
+            'academy_id'  => $this->academy_id,
+            'modality_id' => $this->modality_id ?: null,
+            'weekday'     => $this->weekday,
+            'start_time'  => $this->start_time,
+            'end_time'    => $this->end_time    ?: null,
+            'notes'       => $this->notes       ?: null,
+            'is_active'   => 1,
         ];
     }
 }

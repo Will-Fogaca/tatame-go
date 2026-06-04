@@ -1,41 +1,110 @@
-<h4 class="mb-4">Histórico de Graduações</h4>
+<div class="page-header mb-4">
+  <h4 class="fw-bold mb-1">Histórico de Graduações</h4>
+  <p class="text-muted mb-0">Histórico completo de faixas do aluno.</p>
+</div>
 
-<div class="card shadow-sm border-0">
+<div class="card shadow-sm border-0 belts-history-card">
 
-  <!-- HEADER -->
-  <div class="card-header bg-white d-flex justify-content-between align-items-center">
-    
+  <div class="card-header bg-white d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center gap-3 p-3 p-md-4">
     <div>
-      <h6 class="mb-0 fw-bold">Graduações do Aluno</h6>
-      <small class="text-muted">Histórico completo de faixas</small>
+      <h6 class="mb-1 fw-bold">Graduações do Aluno</h6>
+      <small class="text-muted">Consulte e gerencie as graduações cadastradas.</small>
     </div>
 
     <a href="/admin/aluno/graduacao/cadastrar?student_id={{student_id}}&academy_id={{academy_id}}" 
-       class="btn btn-success btn-sm">
-      <i class="bi bi-plus-lg"></i> Nova graduação
+       class="btn btn-success btn-lg">
+      <i class="bi bi-plus-lg me-1"></i>
+      Nova graduação
     </a>
-
   </div>
 
-  <!-- BODY -->
   <div class="card-body p-0">
 
-    <table class="table table-hover align-middle mb-0">
-      <thead class="table-light">
-        <tr>
-          <th style="width: 60px;">#</th>
-          <th>Faixa</th>
-          <th style="width: 150px;">Data</th>
-          <th>Observações</th>
-          <th></th>
-        </tr>
-      </thead>
+    <div class="table-responsive-md">
+      <table class="table table-hover align-middle mb-0 responsive-table">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 60px;">#</th>
+            <th>Faixa</th>
+            <th style="width: 150px;">Data</th>
+            <th>Observações</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        {{belts}}
-      </tbody>
-    </table>
+        <tbody>
+          {{belts}}
+        </tbody>
+      </table>
+    </div>
 
   </div>
 
 </div>
+
+<style>
+  .belts-history-card {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  @media (max-width: 767.98px) {
+    .page-header {
+      text-align: center;
+    }
+
+    .responsive-table thead {
+      display: none;
+    }
+
+    .responsive-table,
+    .responsive-table tbody,
+    .responsive-table tr,
+    .responsive-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .responsive-table tbody {
+      padding: 0.75rem;
+    }
+
+    .responsive-table tr {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 1rem;
+      padding: 0.75rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    }
+
+    .responsive-table td {
+      border: 0;
+      padding: 0.45rem 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .responsive-table td::before {
+      content: attr(data-label);
+      font-weight: 600;
+      color: #64748b;
+      text-align: left;
+      flex-shrink: 0;
+    }
+
+    .responsive-table td:last-child {
+      justify-content: flex-start;
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .responsive-table td:last-child::before {
+      display: none;
+    }
+  }
+</style>

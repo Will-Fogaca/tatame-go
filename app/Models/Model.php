@@ -69,7 +69,6 @@ abstract class Model {
      * @return void
      */
     public function save(){
-
         if (!empty($this->id)) {
             $this->performUpdate();
         } else {
@@ -82,9 +81,17 @@ abstract class Model {
      *
      * @return void
      */
-    protected function performInsert(){
-        static::db()->insert($this->toArray());
+   protected function performInsert(){
+
+        $newId = static::db()->insert(
+            $this->toArray()
+        );
+
+        if(empty($this->id)){
+            $this->id = $newId;
+        }
     }
+    
     /**
      * Método responsável por executar o UPDATE com os campos retornados por toArray()
      *

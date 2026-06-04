@@ -1,45 +1,44 @@
 <tr>
 
-  <td>
+  <td data-label="#" class="d-md-table-cell">
+    {{number}}
+  </td>
 
-    <div class="d-flex gap-2">
+  <td data-label="Nome">
+    <strong>{{name}}</strong>
+  </td>
+
+  <td data-label="Telefone" class="d-md-table-cell">
+    {{phone_number}}
+  </td>
+
+  <td data-label="Cadastro">
+    {{created_at}}
+  </td>
+
+   <td data-label="Ações">
+    <div class="d-flex gap-2 action-buttons">
 
       <a href="/admin/academia/editar?id={{id}}"
          class="btn btn-sm btn-primary">
         <i class="bi bi-pencil"></i>
+        <span class="d-md-none ms-1">Editar</span>
       </a>
 
       <form method="post"
             action="/admin/academia/excluir"
             onsubmit="return confirm('Tem certeza que deseja excluir esta academia?')"
-            class="m-0">
+            class="m-0 flex-fill flex-md-grow-0">
 
         <input type="hidden" name="id" value="{{id}}">
 
-        <button type="submit" class="btn btn-sm btn-danger">
+        <button type="submit" class="btn btn-sm btn-danger w-100">
           <i class="bi bi-trash"></i>
+          <span class="d-md-none ms-1">Excluir</span>
         </button>
 
       </form>
 
     </div>
-
   </td>
-
-  <td class="d-none d-md-table-cell">
-    {{number}}
-  </td>
-
-  <td>
-    {{name}}
-  </td>
-
-  <td class="d-none d-md-table-cell">
-    {{phone_number}}
-  </td>
-
-  <td>
-    {{created_at}}
-  </td>
-
 </tr>

@@ -1,30 +1,50 @@
-<div class="container mt-4">
-
-    <div class="card shadow-sm">
-        <div class="card-body">
-            
-            <form method="GET" action="/admin/graduacao">
-
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">
-                        Selecione a academia
-                    </label>
-
-                    <select name="academy_id" class="form-select" onchange="this.form.submit()">
-                        {{academies}}
-                    </select>
-                </div>
-
-            </form>
-
-        </div>
-    </div>
-
-    <br>
-    <a href="/admin/graduacao/cadastrar?academy_id={{academy_id}}" class="btn btn-primary"> Nova graduação </a>
-
-    <div class="mt-4">
-        {{belts}}
-    </div>
-
+<div class="page-header mb-4">
+  <h4 class="fw-bold mb-1">Graduações</h4>
+  <p class="text-muted mb-0">Selecione uma academia para gerenciar as faixas.</p>
 </div>
+
+<div class="card shadow-sm border-0 filter-card mb-4">
+  <div class="card-body p-4">
+
+    <form method="GET" action="/admin/graduacao">
+      <label class="form-label">Selecione a academia</label>
+
+      <select name="academy_id" class="form-select form-select-lg" onchange="this.form.submit()">
+        {{academies}}
+      </select>
+    </form>
+
+  </div>
+</div>
+
+<div class="d-grid d-sm-flex mb-4">
+  <a href="/admin/graduacao/cadastrar?academy_id={{academy_id}}" class="btn btn-primary btn-lg">
+    <i class="bi bi-plus-lg me-1"></i>
+    Nova graduação
+  </a>
+</div>
+
+<div class="belts-wrapper">
+  {{belts}}
+</div>
+
+<style>
+  .filter-card {
+    max-width: 720px;
+    border-radius: 1rem;
+  }
+
+  .belts-wrapper {
+    width: 100%;
+  }
+
+  @media (max-width: 575.98px) {
+    .page-header {
+      text-align: center;
+    }
+
+    .filter-card {
+      max-width: 100%;
+    }
+  }
+</style>

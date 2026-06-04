@@ -1,43 +1,58 @@
-<div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh;">
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center px-3 py-4">
 
-  <div class="card shadow-sm border-0" style="width: 100%; max-width: 500px;">
+  <div class="card shadow border-0 register-card w-100">
     <div class="card-body p-4">
 
-      <!-- TÍTULO -->
       <div class="text-center mb-4">
-        <h4 class="fw-bold">Criar conta</h4>
-        <p class="text-muted mb-0">Cadastre-se para começar</p>
+        <h3 class="fw-bold mb-1">Criar conta</h3>
+        <p class="text-muted small mb-0">
+          Cadastre-se para começar
+        </p>
       </div>
 
-      <!-- FORM -->
       <form method="post">
 
-        <!-- NOME -->
         <div class="mb-3">
           <label class="form-label">Nome completo</label>
-          <input type="text" name="name" class="form-control form-control-lg" required>
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            autocomplete="name"
+            required>
         </div>
 
-        <!-- EMAIL -->
         <div class="mb-3">
           <label class="form-label">E-mail</label>
-          <input type="email" name="email" class="form-control form-control-lg" required>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            autocomplete="email"
+            required>
         </div>
 
-        <!-- TELEFONE -->
         <div class="mb-3">
           <label class="form-label">Telefone</label>
-          <input type="text" name="phone_number" class="form-control form-control-lg" placeholder="(11) 99999-9999" required>
+          <input
+            type="text"
+            name="phone_number"
+            class="form-control"
+            placeholder="(11) 99999-9999"
+            autocomplete="tel"
+            required>
         </div>
 
-        <!-- DOCUMENTO -->
-        <div class="row">
-          <div class="col-md-6 mb-3">
+        <div class="row g-2">
+          <div class="col-md-8">
             <label class="form-label">Documento</label>
-            <input type="text" name="document" class="form-control">
+            <input
+              type="text"
+              name="document"
+              class="form-control">
           </div>
 
-          <div class="col-md-6 mb-3">
+          <div class="col-md-4">
             <label class="form-label">Tipo</label>
             <select name="document_type" class="form-select">
               <option value="">Selecione</option>
@@ -47,34 +62,42 @@
           </div>
         </div>
 
-        <!-- SENHA -->
-        <div class="mb-3">
+        <div class="mb-3 mt-3">
           <label class="form-label">Senha</label>
-          <input type="password" name="password" class="form-control form-control-lg" required>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            autocomplete="new-password"
+            required>
         </div>
 
-        <!-- CONFIRMAR SENHA -->
         <div class="mb-3">
           <label class="form-label">Confirmar senha</label>
-          <input type="password" name="password_confirm" class="form-control form-control-lg" required>
+          <input
+            type="password"
+            name="password_confirm"
+            class="form-control"
+            autocomplete="new-password"
+            required>
         </div>
 
         {{status}}
 
-        <!-- BOTÃO -->
-        <button type="submit" class="btn btn-primary w-100 btn-lg">
+        <button
+          type="submit"
+          class="btn btn-primary w-100">
           Criar conta
         </button>
 
       </form>
 
-      <!-- DIVISOR -->
-      <hr class="my-4">
+      <div class="text-center mt-4">
+        <small class="text-muted d-block mb-2">
+          Já tem uma conta?
+        </small>
 
-      <!-- LOGIN -->
-      <div class="text-center">
-        <p class="mb-2 text-muted">Já tem uma conta?</p>
-        <a href="/login" class="btn btn-outline-primary w-100">
+        <a href="/login" class="text-decoration-none fw-semibold">
           Entrar
         </a>
       </div>
@@ -83,3 +106,28 @@
   </div>
 
 </div>
+
+<style>
+  .register-card {
+    max-width: 430px;
+    border-radius: 16px;
+  }
+
+  .form-control,
+  .form-select {
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .btn-primary {
+    height: 46px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 576px) {
+    .register-card {
+      max-width: 100%;
+    }
+  }
+</style>

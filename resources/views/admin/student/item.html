@@ -1,37 +1,45 @@
 <tr>
-  <td>{{number}}</td>
-  <td>{{name}}</td>
-  <td>{{birth_date}}</td>
-  <td>{{phone}}</td>
-  <td>{{guardian_name}}</td>
-  <td>{{guardian_phone}}</td>
-  <td>{{created_at}}</td>
+  <td data-label="#">{{number}}</td>
 
-  <td class="text-end">    
-    <div class="d-flex justify-content-end gap-3">
+  <td data-label="Nome">
+    <strong>{{name}}</strong>
+  </td>
 
-      <a href="/admin/aluno/graduacao?student_id={{id}}&academy_id={{academy_id}}" class="btn btn-sm btn-outline-secondary">
-        <i class="bi bi-award me-2"></i>
+  <td data-label="Nascimento">{{birth_date}}</td>
+  <td data-label="Telefone">{{phone}}</td>
+  <td data-label="Responsável">{{guardian_name}}</td>
+  <td data-label="Tel. responsável">{{guardian_phone}}</td>
+  <td data-label="Cadastro">{{created_at}}</td>
+
+  <td data-label="Ações" class="text-end">
+    <div class="d-grid d-sm-flex justify-content-sm-end gap-2 student-actions">
+
+      <a href="/admin/aluno/graduacao?student_id={{id}}&academy_id={{academy_id}}"
+         class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-award"></i>
+        <span class="d-sm-none ms-1">Graduação</span>
       </a>
-    
-      <a href="/admin/aluno/graduacao?student_id={{id}}&academy_id={{academy_id}}" class="btn btn-sm btn-outline-secondary">
-        <i class="bi bi-award me-2"></i>
-      </a>
 
-      <a href="/admin/aluno/editar?id={{id}}&academy_id={{academy_id}}" class="btn btn-sm btn-primary">
+      <a href="/admin/aluno/editar?id={{id}}&academy_id={{academy_id}}"
+         class="btn btn-sm btn-primary">
         <i class="bi bi-pencil"></i>
+        <span class="d-sm-none ms-1">Editar</span>
       </a>
 
-      <form method="post" action="/admin/aluno/excluir" onsubmit="return confirm('Tem certeza que deseja excluir esta academia?')"class="m-0">
+      <form method="post"
+            action="/admin/aluno/excluir"
+            onsubmit="return confirm('Tem certeza que deseja excluir este aluno?')"
+            class="m-0">
+
         <input type="hidden" name="id" value="{{id}}">
 
-        <button type="submit" class="btn btn-sm btn-danger">
+        <button type="submit" class="btn btn-sm btn-danger w-100">
           <i class="bi bi-trash"></i>
+          <span class="d-sm-none ms-1">Excluir</span>
         </button>
 
       </form>
+
     </div>
-
   </td>
-
 </tr>

@@ -8,10 +8,17 @@
     use \App\Http\Middleware\Queue;
 
     Environment::load(__DIR__.'/../'); 
+
     define('URL', getenv('URL'));
     
 
-    Database::config(getenv('DB_HOST'), getenv('DB_NAME'), getenv('DB_USER'), getenv('DB_PASS'), getenv('DB_PORT'));
+   Database::config(
+    $_ENV['DB_HOST'] ?? '',
+    $_ENV['DB_NAME'] ?? '',
+    $_ENV['DB_USER'] ?? '',
+    $_ENV['DB_PASS'] ?? '',
+    $_ENV['DB_PORT'] ?? '3306'
+);
 
     View::init([
         'URL'=> URL
@@ -19,8 +26,10 @@
     
     Queue::setMap([
         'maintenance' => \App\Http\Middleware\Maintenance::class,
+        'isAdmin' => \App\Http\Middleware\IsAdmin::class,
         'required-logout' => \App\Http\Middleware\RequireLogout::class,
         'required-login' => \App\Http\Middleware\RequireLogin::class
+
     ]);
 
     Queue::setDefault([

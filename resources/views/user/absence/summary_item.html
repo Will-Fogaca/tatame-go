@@ -1,0 +1,23 @@
+<div class="col-md-4">
+    <div class="card border-0 shadow-sm h-100">
+        <div class="card-body">
+            <h6 class="fw-semibold mb-3">{{academy_name}}</h6>
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted small">Total de aulas</span>
+                <strong>{{total_classes}}</strong>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted small">Presenças</span>
+                <strong class="text-success">{{total_present}}</strong>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+                <span class="text-muted small">Faltas</span>
+                <strong class="text-danger">{{total_absences}}</strong>
+            </div>
+            <div class="progress" style="height: 8px;">
+                <div class="progress-bar bg-{{badge}}" style="width: {{presence_pct}}%"></div>
+            </div>
+            <small class="text-muted">{{presence_pct}}% de frequência</small>
+        </div>
+    </div>
+</div>

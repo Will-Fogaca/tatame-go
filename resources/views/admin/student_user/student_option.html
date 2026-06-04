@@ -1,13 +1,21 @@
 <tr>
-    <td>{{student_name}}</td>
-    <td>{{student_age}} anos</td>
-    <td class="text-center">
-        <form method="POST" action="/admin/vinculos/cadastrar">
-            <input type="hidden" name="user_id" value="{{user_id}}">
-            <input type="hidden" name="student_id" value="{{student_id}}">
-            <button type="submit" class="btn btn-success btn-sm">
-                <i class="bi bi-link-45deg"></i> Vincular
-            </button>
-        </form>
-    </td>
+  <td data-label="Aluno">
+    <strong>{{student_name}}</strong>
+  </td>
+
+  <td data-label="Idade">
+    {{student_age}} anos
+  </td>
+
+  <td data-label="Vincular" class="text-center">
+    <form method="POST" action="/admin/vinculos/cadastrar" class="m-0">
+      <input type="hidden" name="user_id" value="{{user_id}}">
+      <input type="hidden" name="student_id" value="{{student_id}}">
+
+      <button type="submit" class="btn btn-success btn-sm">
+        <i class="bi bi-link-45deg"></i>
+        <span class="ms-1">Vincular</span>
+      </button>
+    </form>
+  </td>
 </tr>

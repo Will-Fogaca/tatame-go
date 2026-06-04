@@ -1,28 +1,139 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h4 class="mb-0">Vínculos Usuário-Aluno</h4>
-    <a href="/admin/vinculos/cadastrar" class="btn btn-primary btn-sm">
-        <i class="bi bi-plus-lg me-1"></i> Novo vínculo
-    </a>
-</div>
+<div class="links-page">
 
-<div class="card">
-    <div class="card-body p-0">
-        <table class="table table-hover mb-0">
-            <thead class="table-light">
-                <tr>
-                    <th>#</th>
-                    <th>Usuário</th>
-                    <th>E-mail</th>
-                    <th>Aluno</th>
-                    <th>Criado em</th>
-                    <th class="text-center">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{links}}
-            </tbody>
-        </table>
+  <div class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center mb-4 gap-2">
+    <div>
+      <h4 class="fw-bold mb-1">Vínculos Usuário-Aluno</h4>
+      <p class="text-muted mb-0">Gerencie os vínculos entre usuários e alunos.</p>
     </div>
+
+    <a href="/admin/vinculos/cadastrar" class="btn btn-primary btn-lg">
+      <i class="bi bi-plus-lg me-1"></i>
+      Novo vínculo
+    </a>
+  </div>
+
+  <div class="card shadow-sm border-0 links-card">
+    <div class="card-body p-0">
+
+      <div class="table-responsive-md">
+        <table class="table table-hover align-middle mb-0 responsive-table">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Usuário</th>
+              <th>E-mail</th>
+              <th>Aluno</th>
+              <th>Criado em</th>
+              <th class="text-end">Ações</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {{links}}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mt-4 pagination-wrapper">
+    {{pagination}}
+  </div>
+
 </div>
 
-{{pagination}}
+<style>
+  .links-page .links-card {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .links-page .responsive-table td,
+  .links-page .responsive-table th {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 767.98px) {
+    .links-page h4,
+    .links-page p {
+      text-align: center;
+    }
+
+    .links-page .responsive-table thead {
+      display: none;
+    }
+
+    .links-page .responsive-table,
+    .links-page .responsive-table tbody,
+    .links-page .responsive-table tr,
+    .links-page .responsive-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .links-page .responsive-table tbody {
+      padding: 0.75rem;
+    }
+
+    .links-page .responsive-table tr {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 1rem;
+      padding: 0.75rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    }
+
+    .links-page .responsive-table td {
+      border: 0;
+      padding: 0.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      text-align: right;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .links-page .responsive-table td::before {
+      content: attr(data-label);
+      font-weight: 600;
+      color: #64748b;
+      text-align: left;
+      flex-shrink: 0;
+      max-width: 45%;
+    }
+
+    .links-page .responsive-table td:last-child {
+      display: block;
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+      border-top: 1px solid #e5e7eb;
+      text-align: left;
+    }
+
+    .links-page .responsive-table td:last-child::before {
+      display: none;
+    }
+
+    .links-page .link-actions {
+      display: grid !important;
+      grid-template-columns: 1fr;
+      gap: 0.5rem !important;
+      width: 100%;
+    }
+
+    .links-page .link-actions .btn {
+      width: 100%;
+      min-height: 42px;
+    }
+
+    .links-page .pagination-wrapper .pagination {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+  }
+</style>

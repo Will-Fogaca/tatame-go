@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 namespace App\Models;
-use \App\Utils\Database;
 
-class ClassModality extends Model{
-    
+class ClassModality extends Model {
+
     /**
      * Nome da tabela
+     *
      * @var string
      */
     protected static string $table = 'class_modalities';
@@ -14,34 +14,27 @@ class ClassModality extends Model{
     /**
      * Id da academia
      *
-     * @var string #UUid
+     * @var string
      */
-    public string $academy_id;
+    public $academy_id = null;
 
     /**
      * Nome da modalidade
      *
      * @var string
      */
-    public string $name;
+    public $name = null;
 
-
-    
-     /**
-     * Método responsável por retornar os campos a serem gravados no banco
+    /**
+     * Método responsável por retornar o objeto em formato de array
      *
      * @return array
      */
     protected function toArray(): array {
         return [
-            'name'           => $this->name,
-            'academy_id'     => $this->academy_id,
-            'is_active'      => $this->is_active,
-            'updated_at'     => date('Y-m-d H:i:s'),
+            'academy_id' => $this->academy_id,
+            'name'       => $this->name,
+            'is_active'  => 1,
         ];
     }
-
-
-    
-    
 }

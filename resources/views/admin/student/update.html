@@ -1,62 +1,66 @@
-<section id="form" class="container mt-4">
+<section id="form" class="student-form-page">
 
-  <div class="card bg-light text-dark border-secondary shadow">
+  <div class="page-header mb-4">
+    <h4 class="fw-bold mb-1">Editar aluno</h4>
+    <p class="text-muted mb-0">Atualize os dados do aluno.</p>
+  </div>
 
-    <div class="card-header border-secondary">
-      <h5 class="mb-0">Editar aluno</h5>
-    </div>
+  {{error}}
 
-    <div class="card-body">
-      {{error}}
+  <div class="card shadow-sm border-0 form-card">
+    <div class="card-body p-4 p-md-5">
+
       <form method="POST" action="/admin/aluno/editar">
 
         <input type="hidden" name="id" value="{{id}}">
         <input type="hidden" name="academy_id" value="{{academy_id}}">
 
-        <div class="row">
+        <div class="row g-3">
 
-          <div class="col-md-6 mb-3">
+          <div class="col-12 col-md-6">
             <label class="form-label">Nome</label>
-            <input type="text" class="form-control" name="name" value="{{name}}" required>
+            <input type="text" class="form-control form-control-lg" name="name" value="{{name}}" autocomplete="name" required>
           </div>
 
-          <div class="col-md-6 mb-3">
+          <div class="col-12 col-md-6">
             <label class="form-label">Data de nascimento</label>
-            <input type="date" class="form-control" name="birth_date" value="{{birth_date}}" required>
+            <input type="date" class="form-control form-control-lg" name="birth_date" value="{{birth_date}}" required>
           </div>
 
-          <div class="col-md-6 mb-3">
+          <div class="col-12 col-md-6">
             <label class="form-label">Telefone</label>
-            <input type="text" class="form-control" name="phone_number" value="{{phone_number}}">
+            <input type="text" class="form-control form-control-lg" name="phone_number" value="{{phone_number}}" autocomplete="tel">
           </div>
 
-          <div class="col-md-6 mb-3">
+          <div class="col-12 col-md-6">
             <label class="form-label">Responsável</label>
-            <input type="text" class="form-control" name="guardian_name" value="{{guardian_name}}">
+            <input type="text" class="form-control form-control-lg" name="guardian_name" value="{{guardian_name}}">
           </div>
 
-          <div class="col-md-6 mb-3">
+          <div class="col-12 col-md-6">
             <label class="form-label">Telefone do responsável</label>
-            <input type="text" class="form-control" name="guardian_phone" value="{{guardian_phone}}">
+            <input type="text" class="form-control form-control-lg" name="guardian_phone" value="{{guardian_phone}}" autocomplete="tel">
           </div>
 
-          <div class="col-md-12 mb-3">
+          <div class="col-12">
             <label class="form-label">Observações</label>
-            <textarea class="form-control" name="notes" rows="3">{{notes}}</textarea>
+            <textarea class="form-control form-control-lg" name="notes" rows="4">{{notes}}</textarea>
           </div>
 
         </div>
 
-        <div class="d-flex justify-content-between mt-4">
+        <hr class="my-4">
 
-          <a href="/admin/aluno?academy_id={{academy_id}}" class="btn btn-outline-secondary">
-            ← Voltar
+        <div class="d-grid d-sm-flex justify-content-sm-between gap-2">
+          <a href="/admin/aluno?academy_id={{academy_id}}" class="btn btn-outline-secondary btn-lg">
+            <i class="bi bi-arrow-left me-1"></i>
+            Voltar
           </a>
 
-          <button type="submit" class="btn btn-warning px-4 fw-bold">
+          <button type="submit" class="btn btn-warning btn-lg">
+            <i class="bi bi-check-lg me-1"></i>
             Salvar alterações
           </button>
-
         </div>
 
       </form>
@@ -65,3 +69,20 @@
   </div>
 
 </section>
+
+<style>
+  .form-card {
+    max-width: 900px;
+    border-radius: 1rem;
+  }
+
+  @media (max-width: 575.98px) {
+    .page-header {
+      text-align: center;
+    }
+
+    .form-card {
+      max-width: 100%;
+    }
+  }
+</style>

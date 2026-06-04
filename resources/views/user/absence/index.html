@@ -1,0 +1,41 @@
+<div class="mb-3">
+    <h4 class="mb-0">Minhas Presenças</h4>
+</div>
+
+<!-- Sem alunos vinculados -->
+<div class="alert alert-warning {{empty}}">
+    Nenhum aluno vinculado à sua conta. Entre em contato com o responsável da academia.
+</div>
+
+<!-- Abas por aluno -->
+<ul class="nav nav-tabs mb-3">
+    {{student_tabs}}
+</ul>
+
+<!-- Resumo por academia -->
+<div class="row g-3 mb-4">
+    {{summary}}
+</div>
+
+<!-- Histórico detalhado -->
+<div class="card">
+    <div class="card-header fw-semibold">
+        <i class="bi bi-clock-history me-1"></i> Histórico detalhado
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Data</th>
+                    <th>Início</th>
+                    <th>Academia</th>
+                    <th>Modalidade</th>
+                    <th class="text-center">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{history}}
+            </tbody>
+        </table>
+    </div>
+</div>

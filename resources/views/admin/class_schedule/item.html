@@ -1,0 +1,22 @@
+<tr>
+    <td>{{number}}</td>
+    <td>{{weekday}}</td>
+    <td>{{start_time}}</td>
+    <td>{{end_time}}</td>
+    <td>{{modality_name}}</td>
+    <td class="text-muted small">{{notes}}</td>
+    <td class="text-center">
+        <div class="d-flex gap-1 justify-content-center">
+            <a href="/admin/aula/horario/editar?id={{id}}" class="btn btn-warning btn-sm">
+                <i class="bi bi-pencil"></i>
+            </a>
+            <form method="POST" action="/admin/aula/horario/excluir" onsubmit="return confirm('Excluir este horário?')">
+                <input type="hidden" name="id" value="{{id}}">
+                <input type="hidden" name="academy_id" value="{{academy_id}}">
+                <button type="submit" class="btn btn-danger btn-sm">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </form>
+        </div>
+    </td>
+</tr>

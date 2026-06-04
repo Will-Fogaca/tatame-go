@@ -50,4 +50,22 @@ class BeltRank extends Model {
     public function delete(): bool{
         return static::db()->delete("id = '{$this->id}'");
     }
+
+
+    /**
+     * Retorna o próximo nível disponível da academia
+     *
+     * @param string $academyId
+     * @return int
+     */
+    public static function getNextLevel(string $academyId): int
+    {
+        $belt = static::list(
+            "academy_id = '".$academyId."'",
+            'level DESC',
+            '1'
+        )->fetchObject(self::class);
+
+        return $belt ? ($belt->level + 1) : 1;
+    }
 }

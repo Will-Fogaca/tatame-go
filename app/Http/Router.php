@@ -118,7 +118,7 @@ class Router{
                     return $methods[$httpMethod];
                 }
 
-
+                    
                 throw new Exception('Método não permitido', 405);
             }
         }

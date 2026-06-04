@@ -1,26 +1,65 @@
-<div class="container mt-4">
+<div class="mural-page">
 
-  <div class="d-flex align-items-center gap-3 mb-4">
-    <label class="form-label fw-semibold mb-0 text-nowrap">Academia:</label>
-    <form method="GET" class="flex-grow-1">
-      <select name="academy_id" class="form-select" onchange="this.form.submit()">
-        {{academies}}
-      </select>
-    </form>
-    <a href="/admin/mural/cadastrar?academy_id={{academy_id}}" class="btn btn-primary text-nowrap {{has_academy}}">
-      <i class="bi bi-plus-lg me-1"></i> Novo aviso
-    </a>
+  <div class="page-header mb-4">
+    <h4 class="fw-bold mb-1">
+      <i class="bi bi-megaphone me-1"></i>
+      Mural
+    </h4>
+    <p class="text-muted mb-0">Gerencie os avisos da academia.</p>
   </div>
 
-  <h5 class="mb-3">
-    <i class="bi bi-megaphone me-2"></i>Mural
-  </h5>
+  <div class="card shadow-sm border-0 filter-card mb-4">
+    <div class="card-body p-3 p-sm-4">
 
-  {{posts}}
+      <div class="row g-2 align-items-end">
+        <div class="col-12 col-md">
+          <form method="GET">
+            <label class="form-label">Academia</label>
+            <select name="academy_id" class="form-select form-select-lg" onchange="this.form.submit()">
+              {{academies}}
+            </select>
+          </form>
+        </div>
 
-  <div class="text-center text-muted mt-5 {{empty}}">
+        <div class="col-12 col-md-auto">
+          <a href="/admin/mural/cadastrar?academy_id={{academy_id}}" class="btn btn-primary btn-lg w-100 {{has_academy}}">
+            <i class="bi bi-plus-lg me-1"></i>
+            Novo aviso
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="posts-wrapper">
+    {{posts}}
+  </div>
+
+  <div class="empty-state text-center text-muted mt-5 {{empty}}">
     <i class="bi bi-chat-left-text fs-1 d-block mb-2"></i>
-    <p>Nenhum aviso no mural</p>
+    <p class="mb-0">Nenhum aviso no mural</p>
   </div>
 
 </div>
+
+<style>
+  .mural-page .filter-card {
+    max-width: 900px;
+    border-radius: 1rem;
+  }
+
+  .mural-page .posts-wrapper {
+    width: 100%;
+  }
+
+  @media (max-width: 575.98px) {
+    .mural-page .page-header {
+      text-align: center;
+    }
+
+    .mural-page .filter-card {
+      max-width: 100%;
+    }
+  }
+</style>
